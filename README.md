@@ -24,7 +24,11 @@ Wo immer möglich wird bildlich erklärt statt in Textkästen:
 | XI | Die große Tafel: alle drei Verschaltungen in einem Bild | SVG |
 
 Dazu: Merkspruch **„Hipster fordern Mamas antiken Doppel-Gyros"** mit illustriertem
-Bestellbild und Sortierspiel, Patientenakte zu H.M., zehn Testat-Fragen mit Erklärungen.
+Bestellbild und Sortierspiel, Patientenakte zu H.M., zehn Testat-Fragen mit Erklärungen,
+eine **abspielbare Papez-Schleife** (ein Impuls durchläuft Tafel V Station für Station)
+und **„Das Original in Bewegung"**: die 3D-Modellansichten aus dem Quellvideo als
+kapitelgenau ansteuerbare YouTube-Einbettung (Click-to-Load, nocookie-Domain) —
+Standbilder aus dem Video wären urheberrechtlich nicht sauber, die Einbettung ist es.
 
 Kein Framework, kein Build-Schritt — reines HTML/CSS/JS. Die anatomischen Schemata sind
 eigene SVGs (Beschriftung von Hand gesetzt), die atmosphärischen Gravuren wurden mit

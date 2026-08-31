@@ -466,6 +466,9 @@ p.lead::first-letter {
 .loop-st[data-st="cinguli"] .st-ring { stroke: var(--c-cinguli); }
 .loop-st[data-st="parahippo"] .st-ring { stroke: var(--c-parahippo); }
 
+.papez-controls { display: flex; justify-content: center; gap: .6rem; flex-wrap: wrap; margin: .7rem 0 .3rem; }
+.loop-pulse { fill: var(--oxblood); stroke: var(--paper); stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(143,50,34,.65)); pointer-events: none; }
+
 .papez-detail { border-top: 1px dashed var(--line); margin-top: .6rem; padding: .9rem .4rem .2rem; min-height: 3.4rem; }
 .papez-detail p { margin: 0; font-size: .98rem; }
 .papez-detail .pd-title {
@@ -535,6 +538,61 @@ p.lead::first-letter {
   transition: background .15s, color .15s;
 }
 .btn-ghost:hover { background: var(--ink); color: var(--paper); }
+
+/* ============ KINO (eingebettetes Original) ============ */
+.kino-wrap { margin-top: 2.6rem; }
+.kino-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 640; margin: 0 0 .35rem; }
+.kino-title::before { content: "❦ "; color: var(--oxblood); font-size: 1.1rem; }
+.kino-sub { max-width: 74ch; color: var(--ink-soft); margin: 0 0 1.1rem; font-style: italic; }
+.kino {
+  border: 1.5px solid var(--ink); border-radius: 8px;
+  outline: 1px solid var(--line); outline-offset: 6px;
+  background: var(--paper-2);
+  box-shadow: var(--shadow);
+  padding: clamp(.5rem, 1.6vw, .9rem);
+}
+.kino-stage {
+  position: relative; aspect-ratio: 16 / 9;
+  border: 1.5px solid var(--ink); border-radius: 6px;
+  overflow: hidden; background: var(--paper-3);
+}
+.kino-stage iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.kino-poster {
+  appearance: none; cursor: pointer;
+  position: absolute; inset: 0; width: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem;
+  background:
+    radial-gradient(500px 260px at 50% 42%, color-mix(in srgb, var(--oxblood) 10%, transparent), transparent 70%),
+    var(--paper-2);
+  border: 0; color: var(--ink); font-family: var(--font-body);
+}
+.kp-ring {
+  width: 4.4rem; height: 4.4rem; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; color: var(--oxblood); padding-left: .3rem;
+  border: 2px solid var(--oxblood);
+  outline: 1px solid var(--line); outline-offset: 5px;
+  background: var(--paper);
+  transition: transform .18s, background .18s, color .18s;
+}
+.kino-poster:hover .kp-ring { transform: scale(1.07); background: var(--oxblood); color: var(--paper); }
+.kp-label { font-family: var(--font-display); font-weight: 620; font-size: 1.12rem; }
+.kp-note { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft); }
+.kino-chapters { display: flex; flex-wrap: wrap; gap: .45rem; padding: .8rem .2rem .3rem; }
+.kino-ch {
+  appearance: none; cursor: pointer;
+  font-family: var(--font-mono); font-size: .76rem;
+  border: 1px solid var(--line); border-radius: 99px;
+  background: var(--paper); color: var(--ink);
+  padding: .38rem .8rem;
+  transition: border-color .15s, background .15s;
+}
+.kino-ch:hover { border-color: var(--ink); }
+.kino-ch.is-active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.kino-note { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft); margin: .5rem .2rem .1rem; line-height: 1.6; }
+.watch-line { margin: 0 0 .6rem; }
+.kino-link { font-family: var(--font-mono); font-size: .8rem; }
+figcaption .kino-link { font-size: .78rem; }
 
 /* ============ H.M. — PATIENTENAKTE ============ */
 .akte {

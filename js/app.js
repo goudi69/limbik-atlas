@@ -92,22 +92,115 @@
     }
   };
 
+  function showStation(key) {
+    var info = PAPEZ_INFO[key];
+    if (!info || !papezPlate || !papezDetail) return;
+    papezPlate.querySelectorAll(".loop-st").forEach(function (o) {
+      o.classList.toggle("is-active", o.dataset.st === key);
+    });
+    papezDetail.innerHTML =
+      '<p class="pd-title"><span class="pd-step">' + info.step + "</span>" + info.name + "</p>" +
+      "<p>" + info.text + "</p>";
+  }
+
   if (papezPlate && papezDetail) {
     papezPlate.querySelectorAll(".loop-st").forEach(function (st) {
-      function activate() {
-        var info = PAPEZ_INFO[st.dataset.st];
-        if (!info) return;
-        papezPlate.querySelectorAll(".loop-st").forEach(function (o) {
-          o.classList.toggle("is-active", o === st);
-        });
-        papezDetail.innerHTML =
-          '<p class="pd-title"><span class="pd-step">' + info.step + "</span>" + info.name + "</p>" +
-          "<p>" + info.text + "</p>";
-      }
-      st.addEventListener("click", activate);
+      st.addEventListener("click", function () { stopLoopPlay(); showStation(st.dataset.st); });
       st.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); activate(); }
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); stopLoopPlay(); showStation(st.dataset.st); }
       });
+    });
+  }
+
+  /* --- Schleife abspielen: ein Impuls durchläuft den Papez-Kreis --- */
+  var loopPlayBtn = document.getElementById("loopPlay");
+  var loopState = { raf: null, timer: null, pulse: null, playing: false };
+  var STATION_SEQ = ["hippocampus", "fornix", "mamillaria", "thalamus", "cinguli", "parahippo"];
+
+  function stopLoopPlay() {
+    if (!loopState.playing) return;
+    if (loopState.raf) cancelAnimationFrame(loopState.raf);
+    if (loopState.timer) clearInterval(loopState.timer);
+    if (loopState.watchdog) clearTimeout(loopState.watchdog);
+    if (loopState.pulse && loopState.pulse.parentNode) loopState.pulse.parentNode.removeChild(loopState.pulse);
+    loopState = { raf: null, timer: null, watchdog: null, pulse: null, playing: false };
+    if (loopPlayBtn) loopPlayBtn.textContent = "▶ Schleife abspielen";
+  }
+
+  function finishLoopPlay() {
+    stopLoopPlay();
+    papezPlate.querySelectorAll(".loop-st").forEach(function (o) { o.classList.remove("is-active"); });
+    papezDetail.innerHTML =
+      '<p class="pd-title"><span class="pd-step">Kreis geschlossen</span>Zurück im Hippocampus</p>' +
+      "<p>Die Information ist einmal komplett rotiert — und startet von hier die nächste Runde, bis der Inhalt kortikal verankert ist. Genau diese Rotation ist die Konsolidierung.</p>";
+  }
+
+  function startLoopPlay() {
+    if (!papezPlate || loopState.playing) return;
+    var svg = papezPlate.querySelector("svg");
+    var segs = Array.prototype.slice.call(papezPlate.querySelectorAll(".loop .loop-path"));
+    if (!svg || segs.length !== 3) return;
+    loopState.playing = true;
+    loopPlayBtn.textContent = "◼ Stopp";
+
+    var reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      // Ohne Bewegung: Stationen nacheinander durchschalten
+      var i = 0;
+      showStation(STATION_SEQ[0]);
+      loopState.timer = setInterval(function () {
+        i++;
+        if (i < STATION_SEQ.length) { showStation(STATION_SEQ[i]); }
+        else { finishLoopPlay(); }
+      }, 1600);
+      return;
+    }
+
+    var l1 = segs[0].getTotalLength(), l2 = segs[1].getTotalLength(), l3 = segs[2].getTotalLength();
+    var total = l1 + l2 + l3;
+    // Auslösepunkte der Stationen entlang der Gesamtstrecke
+    var marks = [
+      { key: "hippocampus", at: 0 },
+      { key: "fornix", at: l1 * 0.45 },
+      { key: "mamillaria", at: l1 * 0.97 },
+      { key: "thalamus", at: l1 + l2 * 0.14 },
+      { key: "cinguli", at: l1 + l2 * 0.62 },
+      { key: "parahippo", at: l1 + l2 + l3 * 0.55 }
+    ];
+    var nextMark = 0;
+
+    var pulse = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    pulse.setAttribute("r", "8");
+    pulse.setAttribute("class", "loop-pulse");
+    svg.appendChild(pulse);
+    loopState.pulse = pulse;
+
+    var DURATION = 9500; // ms für eine Runde
+    var t0 = performance.now();
+    loopState.watchdog = setTimeout(function () { if (loopState.playing) finishLoopPlay(); }, DURATION + 800);
+    function frame(now) {
+      if (!loopState.playing) return;
+      var p = Math.min((now - t0) / DURATION, 1);
+      var d = p * total;
+      var pt;
+      if (d <= l1) pt = segs[0].getPointAtLength(d);
+      else if (d <= l1 + l2) pt = segs[1].getPointAtLength(d - l1);
+      else pt = segs[2].getPointAtLength(Math.min(d - l1 - l2, l3));
+      pulse.setAttribute("cx", pt.x);
+      pulse.setAttribute("cy", pt.y);
+      while (nextMark < marks.length && d >= marks[nextMark].at) {
+        showStation(marks[nextMark].key);
+        nextMark++;
+      }
+      if (p < 1) { loopState.raf = requestAnimationFrame(frame); }
+      else { finishLoopPlay(); }
+    }
+    loopState.raf = requestAnimationFrame(frame);
+  }
+
+  if (loopPlayBtn) {
+    loopPlayBtn.addEventListener("click", function () {
+      if (loopState.playing) { stopLoopPlay(); } else { startLoopPlay(); }
     });
   }
 
@@ -341,6 +434,38 @@
 
   if (quizReset) quizReset.addEventListener("click", renderQuiz);
   renderQuiz();
+
+  /* ============ Kino: eingebettetes Original ============ */
+  var VIDEO_ID = "vIXBW-a9BWY";
+  var kino = document.getElementById("kino");
+  var kinoStage = document.getElementById("kinoStage");
+
+  function kinoPlay(t) {
+    if (!kinoStage) return;
+    var iframe = document.createElement("iframe");
+    iframe.src = "https://www.youtube-nocookie.com/embed/" + VIDEO_ID + "?start=" + t + "&autoplay=1&rel=0";
+    iframe.title = "Video: Das limbische System — Neurologie mit Dr. Janis";
+    iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
+    iframe.setAttribute("allowfullscreen", "");
+    kinoStage.innerHTML = "";
+    kinoStage.appendChild(iframe);
+    document.querySelectorAll(".kino-ch").forEach(function (b) {
+      b.classList.toggle("is-active", Number(b.dataset.t) === t);
+    });
+  }
+
+  var poster = document.querySelector(".kino-poster");
+  if (poster) poster.addEventListener("click", function () { kinoPlay(Number(poster.dataset.t) || 61); });
+  document.querySelectorAll(".kino-ch").forEach(function (b) {
+    b.addEventListener("click", function () { kinoPlay(Number(b.dataset.t)); });
+  });
+  document.querySelectorAll(".kino-link").forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (!kino) return;
+      kinoPlay(Number(b.dataset.t));
+      kino.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  });
 
   /* ============ Scroll-Reveal ============ */
   var reveals = document.querySelectorAll(".reveal");

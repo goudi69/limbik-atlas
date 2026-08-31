@@ -212,6 +212,29 @@
       <span class="tag">Umstritten</span>
       <p>Je nach Lehrbuch kommen weitere Regionen dazu — etwa die <strong>Septumregion</strong> vorn unter dem Balken. Bei solchen Kandidaten ist die Zugehörigkeit Definitionssache; die sieben Strukturen der Tafel bilden den unstrittigen Kern.</p>
     </aside>
+
+    <div class="kino-wrap">
+      <h3 class="kino-title">Das Original in Bewegung</h3>
+      <p class="kino-sub">Die Tafeln dieses Atlas sind Schemata. Die rotierenden 3D-Modellansichten, auf denen sie beruhen, gehören Dr. Janis — deshalb laufen sie hier im eingebetteten Original, kapitelgenau ansteuerbar.</p>
+      <div class="kino" id="kino">
+        <div class="kino-stage" id="kinoStage">
+          <button type="button" class="kino-poster" data-t="61">
+            <span class="kp-ring" aria-hidden="true">▶</span>
+            <span class="kp-label">Vorführung starten — das 3D-Modell ab 01:01</span>
+            <span class="kp-note">Video lädt erst nach Klick (YouTube, erweiterter Datenschutzmodus)</span>
+          </button>
+        </div>
+        <div class="kino-chapters" role="group" aria-label="Kapitelmarken im Video">
+          <button type="button" class="kino-ch" data-t="61">01:01 · Überblick am Modell</button>
+          <button type="button" class="kino-ch" data-t="148">02:28 · Hippocampus freigelegt</button>
+          <button type="button" class="kino-ch" data-t="385">06:25 · Papez-Kreis in Bewegung</button>
+          <button type="button" class="kino-ch" data-t="598">09:58 · Patient H.M.</button>
+          <button type="button" class="kino-ch" data-t="751">12:31 · Amygdala &amp; Angst</button>
+          <button type="button" class="kino-ch" data-t="1054">17:34 · Gehirnschnitt-Tipp</button>
+        </div>
+        <p class="kino-note">Modellansichten © <a href="https://www.youtube.com/watch?v=vIXBW-a9BWY" target="_blank" rel="noopener">Neurologie mit Dr. Janis</a> — als Einbettung, damit Urheber- und Bildrechte sauber bleiben; Standbilder daraus dürften wir hier nicht veröffentlichen.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -394,8 +417,12 @@
             <circle class="st-ring" cx="520" cy="486" r="21"/><text x="520" y="493">6</text>
           </g>
         </svg>
+        <div class="papez-controls">
+          <button type="button" class="btn-ghost" id="loopPlay">▶ Schleife abspielen</button>
+          <button type="button" class="btn-ghost kino-link" data-t="385">Im 3D-Modell ansehen · 06:25</button>
+        </div>
         <div class="papez-detail" id="papezDetail" aria-live="polite">
-          <p><strong>Tippe eine Nummer an</strong> — die Schleife erzählt sich Station für Station.</p>
+          <p><strong>Tippe eine Nummer an</strong> — oder lass die Schleife einmal komplett durchlaufen.</p>
         </div>
       </div>
       <figcaption class="fig-cap"><span class="fig-no">Tafel V</span> Der Papez-Kreis auf der Anatomie: Hippocampus → Fornix → Corpora mamillaria → Ncll. anteriores thalami → Gyrus cinguli → Gyrus parahippocampalis → zurück in den Hippocampus. Eine Richtung, keine Abkürzung.</figcaption>
@@ -442,6 +469,7 @@
 
   <div class="ch-body">
     <div class="prose">
+      <p class="watch-line"><button type="button" class="linklike kino-link" data-t="598">▶ Diese Geschichte im Video · 09:58</button></p>
       <p class="lead">Der Klassiker der Gedächtnisforschung: Bei <strong>Henry Molaison</strong> („H.M.“) wurden 1953 zur Behandlung einer therapieresistenten Epilepsie beidseits die <strong>medialen Temporallappen samt Hippocampus</strong> reseziert <span class="latin-note">(aufgearbeitet bei Corkin, 2002)</span>. Die Anfälle besserten sich deutlich — doch der Eingriff durchtrennte die Konsolidierungsschleife auf beiden Seiten. Das Ergebnis war eine nahezu reine <strong>anterograde Amnesie für deklarative Inhalte</strong> bei erhaltener Intelligenz und Sprache: Ab dem Tag der Operation konnte H.M. nichts Neues mehr dauerhaft abspeichern. <strong>Brenda Milner</strong>, die ihn über Jahrzehnte untersuchte, musste sich ihm bei jeder Sitzung aufs Neue vorstellen.</p>
     </div>
 
@@ -548,7 +576,7 @@
             <g class="ov-dot"><circle cx="170" cy="228" r="12"/><text x="170" y="232.5">6</text></g>
           </svg>
         </div>
-        <figcaption><span class="fig-no">Tafel IX</span> Die Alarmanlage des Körpers.</figcaption>
+        <figcaption><span class="fig-no">Tafel IX</span> Die Alarmanlage des Körpers. <button type="button" class="linklike kino-link" data-t="751">▶ Im Video · 12:31</button></figcaption>
       </figure>
       <div class="prose alarm-steps">
         <h3 class="steps-title">Die Alarmkette</h3>
@@ -648,7 +676,7 @@
     <div class="prose">
       <div class="merke">
         <span class="tag tag-merke">Workflow</span>
-        <p>Egal ob Präparat, Zeichnung oder MRT-Schnitt: <strong>1.</strong> Seitenventrikel suchen — sie sind fast immer leicht zu erkennen. <strong>2.</strong> Ihrem Bogen folgen. <strong>3.</strong> Daran Hippocampus, Fornix und Stria terminalis zuordnen.</p>
+        <p>Egal ob Präparat, Zeichnung oder MRT-Schnitt: <strong>1.</strong> Seitenventrikel suchen — sie sind fast immer leicht zu erkennen. <strong>2.</strong> Ihrem Bogen folgen. <strong>3.</strong> Daran Hippocampus, Fornix und Stria terminalis zuordnen. <button type="button" class="linklike kino-link" data-t="1054">▶ Am Modell gezeigt · 17:34</button></p>
       </div>
     </div>
   </div>
