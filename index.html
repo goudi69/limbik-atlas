@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="de" data-level="basis">
+<html lang="de">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Limbik-Atlas — Das limbische System verstehen</title>
-<meta name="description" content="Interaktive Lerneinheit zum limbischen System: Hippocampus, Papez-Kreis, Patient H.M., Amygdala &amp; Angstreaktion. Drei Lernstufen von Basis bis Profi, mit Merkspruch, Schautafeln und Quiz.">
+<meta name="description" content="Illustrierter Lernatlas zum limbischen System auf Prüfungsniveau: Hippocampus, Papez-Kreis, Patient H.M., Amygdala &amp; Angstreaktion — mit Bildtafeln, Merkspruch und Testat.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🧠%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,32 @@
 </head>
 <body>
 <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+<!-- Gemeinsame SVG-Definitionen: Handzeichnungs-Filter, Schraffuren -->
+<svg class="svgdefs" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="7" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="4.5"/>
+    </filter>
+    <filter id="wobble-soft" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.5"/>
+    </filter>
+    <pattern id="hatch" width="7" height="7" patternTransform="rotate(38)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#94866a" stroke-width="1" opacity=".45"/>
+    </pattern>
+    <pattern id="hatch-fine" width="4.5" height="4.5" patternTransform="rotate(-32)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="4.5" stroke="#94866a" stroke-width=".8" opacity=".4"/>
+    </pattern>
+    <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8f3222"></path>
+    </marker>
+    <marker id="arrowHeadInk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6d6450"></path>
+    </marker>
+  </defs>
+</svg>
 
 <header class="topbar">
   <a class="brand" href="#top" aria-label="Limbik-Atlas — nach oben">
@@ -24,41 +50,25 @@
     <a href="#papez">Papez-Kreis</a>
     <a href="#hm">Patient H.M.</a>
     <a href="#amygdala">Amygdala</a>
-    <a href="#quiz">Quiz</a>
+    <a href="#quiz">Testat</a>
   </nav>
-  <div class="lvl-switch" role="group" aria-label="Lernstufe wählen">
-    <button type="button" data-level="basis" aria-pressed="true"><span class="dot" aria-hidden="true"></span>Basis</button>
-    <button type="button" data-level="fortgeschritten" aria-pressed="false"><span class="dot" aria-hidden="true"></span>Fortgeschritten</button>
-    <button type="button" data-level="profi" aria-pressed="false"><span class="dot" aria-hidden="true"></span>Profi</button>
-  </div>
+  <span class="topbar-badge">Prüfungsniveau</span>
 </header>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="hero-inner">
-    <p class="hero-kicker reveal">Neuroanatomie · Eine interaktive Lerneinheit</p>
-    <h1 class="hero-title reveal">Das limbische<br><em>System</em></h1>
-    <p class="hero-sub reveal">Wie aus Momenten Erinnerungen werden, warum ein Mandelkern dich vor Schlangen rettet — und wieso ausgerechnet <em>Gyros</em> dir durch die nächste Prüfung hilft.</p>
-    <p class="hero-meta reveal"><span>7 Strukturen</span><span class="sep">·</span><span>2 Funktionen</span><span class="sep">·</span><span>3 Verschaltungen</span><span class="sep">·</span><span>1 Merkspruch</span></p>
-
-    <div class="level-cards reveal" aria-label="Lernstufe wählen">
-      <button class="level-card lc-basis" type="button" data-set-level="basis">
-        <span class="lc-tag">Stufe I — Basis</span>
-        <strong>Zum ersten Mal davon gehört?</strong>
-        <span class="lc-desc">Einfache Sprache, Alltagsbeispiele, der Merkspruch. Keine Vorkenntnisse nötig.</span>
-      </button>
-      <button class="level-card lc-fortgeschritten" type="button" data-set-level="fortgeschritten">
-        <span class="lc-tag">Stufe II — Fortgeschritten</span>
-        <strong>Bio-LK, Psychologie, Vorklinik</strong>
-        <span class="lc-desc">Alle Strukturen mit Fachbegriffen, der komplette Papez-Kreis, der Fall H.M.</span>
-      </button>
-      <button class="level-card lc-profi" type="button" data-set-level="profi">
-        <span class="lc-tag">Stufe III — Profi</span>
-        <strong>Klausur- und Testatniveau</strong>
-        <span class="lc-desc">Latein, Klinik, Langzeitpotenzierung und der Orientierungs-Trick im Gehirnschnitt.</span>
-      </button>
+    <div class="hero-text">
+      <p class="hero-kicker reveal">Neuroanatomie · Ein illustrierter Lernatlas</p>
+      <h1 class="hero-title reveal">Das limbische<br><em>System</em></h1>
+      <p class="hero-sub reveal">Sieben Strukturen, eine Schleife, ein Mandelkern — und ein Merkspruch über Gyros, der dich durchs Testat trägt. Alles auf Prüfungsniveau, alles in Bildern.</p>
+      <p class="hero-meta reveal"><span>7 Strukturen</span><span class="sep">·</span><span>2 Funktionen</span><span class="sep">·</span><span>3 Verschaltungen</span><span class="sep">·</span><span>11 Tafeln</span></p>
+      <p class="hero-cta reveal"><a class="btn-ink" href="#intro">Aufschlagen ↓</a></p>
     </div>
-    <p class="hero-hint reveal">Die Stufe lässt sich jederzeit oben rechts umschalten — der gesamte Atlas passt sich an.</p>
+    <figure class="hero-plate reveal">
+      <img src="assets/hero.jpg" alt="Gravierte Tafel: ein Gehirn in Seitenansicht, darunter ein tiefrotes Seepferdchen, eine Mandel und ein goldener Ring — die drei Sinnbilder des limbischen Systems" width="1100" height="1467" loading="eager">
+      <figcaption>Das Exponat — Seepferdchen, Mandel <span class="amp">&amp;</span> der goldene Kreis</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -70,28 +80,25 @@
     <span class="ch-num" aria-hidden="true">01</span>
     <div>
       <h2 class="ch-title">Ein System, das keins sein wollte</h2>
-      <p class="ch-lede">Worum geht es hier eigentlich?</p>
+      <p class="ch-lede">Ein verteiltes Netzwerk, ein lateinischer Saum — und 150 Jahre Streit.</p>
     </div>
   </header>
 
   <div class="ch-body">
     <div class="prose">
-      <p class="v-b">Das limbische System ist eine Gruppe von Hirnstrukturen, die über das halbe Gehirn verteilt liegen — und trotzdem als Team arbeiten. Es hat zwei Hauptjobs: Es macht aus flüchtigen Eindrücken <strong>dauerhafte Erinnerungen</strong>, und es steuert einen großen Teil unserer <strong>Emotionen</strong>, allen voran die Angst. Ganz nebenbei ist es eine der umstrittensten Strukturen des ganzen Gehirns: Bis heute sind sich Fachleute nicht völlig einig, was genau dazugehört. Wir konzentrieren uns deshalb auf die Basics — die Teile, bei denen sich (fast) alle einig sind.</p>
-      <p class="v-f">Die meisten Hirnregionen lassen sich sauber abgrenzen und haben eine halbwegs klare Aufgabe: Der Okzipitallappen ganz hinten verarbeitet das Sehen, das Kleinhirn darunter koordiniert Bewegungen. Das limbische System ist anders — es ist keine kompakte Region, sondern ein <strong>verteiltes Netzwerk</strong>, dessen Strukturen über weite Teile des Gehirns verstreut liegen. Zusammengefasst werden sie über zwei Kriterien: auffällig <strong>starke Faserverbindungen</strong> untereinander und eine <strong>gemeinsame Funktion</strong>. Es bleibt dabei die wohl umstrittenste „Struktur“ des Gehirns: Welche Regionen dazugehören und was genau seine Aufgaben sind, wird bis heute diskutiert.</p>
-      <p class="v-p">Das limbische System ist keine anatomisch scharf begrenzte Einheit, sondern ein <strong>funktionell definiertes, verteiltes Netzwerk</strong> — und ein historisch gewachsenes Konzept, das bis heute umstritten ist. Konsens besteht über einen Kernbestand von Strukturen, die durch massive Faserbahnen verschaltet sind und gemeinsam zwei Leistungen tragen: die <strong>Gedächtniskonsolidierung</strong> und wesentliche Anteile der <strong>Emotionsverarbeitung</strong>. Die Abgrenzung zu Nachbarsystemen (Septumregion, Riechhirn, Teile des Hypothalamus) bleibt Definitionssache — ein Punkt, den man in Prüfungen ruhig so benennen darf.</p>
+      <p class="lead">Das limbische System ist keine anatomisch scharf begrenzte Einheit, sondern ein <strong>funktionell definiertes, verteiltes Netzwerk</strong> — und bis heute die wohl umstrittenste „Struktur“ des Gehirns. Während sich der Okzipitallappen (Sehen) oder das Kleinhirn (Bewegungskoordination) sauber abgrenzen lassen, liegen die limbischen Strukturen über weite Teile des Gehirns verstreut. Zusammengehalten werden sie von zwei Kriterien: auffällig <strong>starken Faserverbindungen</strong> untereinander und einer <strong>gemeinsamen Funktion</strong>. Konsens besteht über einen Kernbestand von Strukturen, die zwei Leistungen tragen: die <strong>Gedächtniskonsolidierung</strong> und wesentliche Anteile der <strong>Emotionsverarbeitung</strong>. Die Abgrenzung zu Nachbarn (Septumregion, Riechhirn, Teile des Hypothalamus) bleibt Definitionssache — das darf man in Prüfungen genau so benennen.</p>
 
-      <aside class="marginalia min-f">
+      <aside class="marginalia">
         <span class="tag tag-history">Geschichte</span>
-        <p>Die Idee ist rund 150 Jahre alt: Der französische Arzt <strong>Paul Broca</strong> fiel beim Betrachten von Gehirnen auf, dass diese verstreuten Strukturen durch ungewöhnlich starke Nervenfaserbahnen verbunden sind — also vermutete er eine gemeinsame Funktion. Damit lag er richtig (auch wenn er bei der Funktion selbst noch danebentippte). Weil sich die Strukturen wie ein <em>Saum</em> um Balken und Zwischenhirn legen, taufte er sie nach der damaligen Mode auf Latein: <strong>Limbus</strong>, der Saum. Der Name blieb — über die Funktion stritt die Wissenschaft die nächsten 150 Jahre.</p>
+        <p>Die Idee ist rund 150 Jahre alt: Dem französischen Arzt <strong>Paul Broca</strong> fiel auf, dass diese verstreuten Strukturen durch ungewöhnlich starke Nervenfaserbahnen verbunden sind — also vermutete er eine gemeinsame Funktion. Damit lag er richtig (bei der Funktion selbst tippte er noch daneben). Weil sich die Strukturen wie ein <em>Saum</em> um Balken und Zwischenhirn legen, taufte er sie nach der Mode der Zeit auf Latein: <strong>Limbus</strong>, der Saum. Der Name blieb; über die Funktion stritt die Wissenschaft weiter — bis <strong>James Papez</strong> 1937 den nach ihm benannten Schaltkreis beschrieb.</p>
       </aside>
 
       <div class="goalbox">
         <span class="tag">Lernziele</span>
-        <p>Am Ende dieser Einheit kennst du:</p>
         <ol>
-          <li>alle <strong>zentralen Strukturen</strong> des limbischen Systems,</li>
-          <li>seine <strong>zwei wichtigsten Funktionen</strong> — Gedächtnis und Emotion,</li>
-          <li>die <strong>drei wichtigsten Verschaltungen</strong>: den Papez-Kreis, den Angst-Weg der Amygdala und die Brücke zwischen Emotion und Gedächtnis.</li>
+          <li>Alle <strong>zentralen Strukturen</strong> sicher benennen und im Schnittbild finden.</li>
+          <li>Die <strong>zwei Kernfunktionen</strong> erklären: Gedächtniskonsolidierung und Emotion.</li>
+          <li>Die <strong>drei prüfungsrelevanten Verschaltungen</strong> zeichnen können: Papez-Kreis, Stria terminalis, Amygdala-Hippocampus-Brücke.</li>
         </ol>
       </div>
     </div>
@@ -104,223 +111,106 @@
     <span class="ch-num" aria-hidden="true">02</span>
     <div>
       <h2 class="ch-title">Die Landkarte</h2>
-      <p class="ch-lede">Sieben Strukturen, wild im Gehirn verteilt — hier bekommst du den Überblick.</p>
+      <p class="ch-lede">Sieben Strukturen, wild verteilt — hier hängen sie alle an einer Tafel.</p>
     </div>
   </header>
 
   <div class="ch-body">
     <figure class="figure plate-figure">
       <div class="plate" id="brainPlate">
-        <!-- Stilisierte Mediansicht (Innenansicht) des Gehirns, Blick von links -->
         <svg viewBox="0 0 950 660" role="img" aria-labelledby="plateTitle plateDesc">
-          <title id="plateTitle">Schematische Innenansicht des Gehirns mit den Strukturen des limbischen Systems</title>
-          <desc id="plateDesc">Stilisierter Sagittalschnitt: Gyrus cinguli als Bogen über dem Balken, darunter Fornix, Thalamus mit vorderen Kernen, Mamillarkörper, Hippocampus und Gyrus parahippocampalis im Temporallappen, Amygdala vor dem Hippocampus.</desc>
-
-          <!-- Kortex-Silhouette (mit Temporallappen-Ausbuchtung) -->
-          <path class="pl-cortex" d="M 100 340
-            C 92 250 138 152 240 100
-            C 330 56 460 46 570 64
-            C 690 84 780 150 812 244
-            C 832 306 828 362 806 408
-            C 794 432 778 448 758 456
-            L 706 472
-            C 688 478 676 490 668 508
-            C 654 540 620 560 578 556
-            L 500 546
-            C 452 540 410 522 380 496
-            L 330 508
-            C 240 524 152 490 118 414
-            C 104 384 102 362 100 340 Z"/>
-
-          <!-- Gyrus cinguli (Band über dem Balken) -->
-          <path class="pl-s s-cinguli" data-s="cinguli" d="M 300 302
-            C 293 235 352 180 454 170
-            C 562 160 642 196 664 250
-            C 673 272 675 290 672 304
-            L 620 298
-            C 622 286 620 272 612 258
-            C 590 220 530 199 450 207
-            C 370 215 325 250 330 300 Z"/>
-
-          <!-- Balken / Corpus callosum -->
-          <path class="pl-cc" d="M 330 300
-            C 325 250 370 215 450 207
-            C 530 199 590 220 612 258
-            C 620 272 622 286 620 298
-            L 585 294
-            C 587 272 568 250 518 240
-            C 450 227 385 245 368 278
-            C 362 290 361 295 362 300 Z"/>
-
-          <!-- Fornix (dicker Bogen unter dem Balken) -->
-          <path class="pl-s s-fornix" data-s="fornix" d="M 602 306
-            C 558 328 498 338 452 336
-            C 428 335 417 342 410 358
-            L 403 380 L 382 372 L 391 346
-            C 400 324 424 316 452 318
-            C 496 320 552 312 592 290 Z"/>
-
-          <!-- Thalamus -->
-          <ellipse class="pl-s s-thalamus" data-s="thalamus" cx="500" cy="352" rx="58" ry="34"/>
-          <!-- Nuclei anteriores (vorderer Thalamus, hervorgehoben) -->
-          <ellipse class="pl-s s-thalamus-ant" data-s="thalamus" cx="452" cy="336" rx="20" ry="14"/>
-
-          <!-- Hypothalamus (Andeutung) -->
-          <path class="pl-hypo" d="M 412 386 C 420 374 436 370 452 374 C 458 386 457 398 449 408 C 434 412 420 402 412 386 Z"/>
-
-          <!-- Mamillarkörper -->
-          <circle class="pl-s s-mamillaria" data-s="mamillaria" cx="414" cy="414" r="10"/>
-          <!-- Hypophyse -->
-          <path class="pl-stalk" d="M 402 420 C 390 432 382 442 378 452"/>
-          <circle class="pl-hypophyse" cx="376" cy="463" r="11"/>
-
-          <!-- Hirnstamm -->
-          <path class="pl-stem" d="M 476 420
-            C 496 432 510 452 516 478
-            L 532 600 C 536 626 522 644 498 646
-            C 474 648 458 634 454 610
-            L 444 492 C 441 460 452 434 476 420 Z"/>
-
-          <!-- Kleinhirn (separat, unter dem Okzipitallappen) -->
-          <g class="pl-cereb">
-            <path d="M 592 470
-              C 618 434 686 424 738 446
-              C 792 468 812 520 790 566
-              C 768 610 704 628 652 608
-              C 602 588 576 526 592 470 Z"/>
-            <path class="pl-hatch" d="M 606 470 C 646 442 716 442 762 470 M 594 502 C 644 470 722 470 780 506 M 596 536 C 648 504 724 506 782 544 M 610 570 C 656 540 720 542 768 578"/>
+          <title id="plateTitle">Schautafel: Innenansicht des Gehirns mit den Strukturen des limbischen Systems</title>
+          <desc id="plateDesc">Stilisierter Sagittalschnitt: Gyrus cinguli als Bogen über dem Balken, darunter Fornix, Thalamus mit vorderen Kernen, Corpora mamillaria, Hippocampus und Gyrus parahippocampalis im Temporallappen, Amygdala vor dem Hippocampuskopf.</desc>
+          <g filter="url(#wobble)">
+            <path class="pl-cortex" d="M 100 340 C 92 250 138 152 240 100 C 330 56 460 46 570 64 C 690 84 780 150 812 244 C 832 306 828 362 806 408 C 794 432 778 448 758 456 L 706 472 C 688 478 676 490 668 508 C 654 540 620 560 578 556 L 500 546 C 452 540 410 522 380 496 L 330 508 C 240 524 152 490 118 414 C 104 384 102 362 100 340 Z"/>
+            <path class="pl-cortex-hatch" d="M 100 340 C 92 250 138 152 240 100 C 330 56 460 46 570 64 C 690 84 780 150 812 244 C 832 306 828 362 806 408 C 794 432 778 448 758 456 L 706 472 C 688 478 676 490 668 508 C 654 540 620 560 578 556 L 500 546 C 452 540 410 522 380 496 L 330 508 C 240 524 152 490 118 414 C 104 384 102 362 100 340 Z"/>
+            <path class="pl-s s-cinguli" data-s="cinguli" d="M 300 302 C 293 235 352 180 454 170 C 562 160 642 196 664 250 C 673 272 675 290 672 304 L 620 298 C 622 286 620 272 612 258 C 590 220 530 199 450 207 C 370 215 325 250 330 300 Z"/>
+            <path class="pl-cc" d="M 330 300 C 325 250 370 215 450 207 C 530 199 590 220 612 258 C 620 272 622 286 620 298 L 585 294 C 587 272 568 250 518 240 C 450 227 385 245 368 278 C 362 290 361 295 362 300 Z"/>
+            <path class="pl-s s-fornix" data-s="fornix" d="M 602 306 C 558 328 498 338 452 336 C 428 335 417 342 410 358 L 403 380 L 382 372 L 391 346 C 400 324 424 316 452 318 C 496 320 552 312 592 290 Z"/>
+            <ellipse class="pl-s s-thalamus" data-s="thalamus" cx="500" cy="352" rx="58" ry="34"/>
+            <ellipse class="pl-s s-thalamus-ant" data-s="thalamus" cx="452" cy="336" rx="20" ry="14"/>
+            <path class="pl-hypo" d="M 412 386 C 420 374 436 370 452 374 C 458 386 457 398 449 408 C 434 412 420 402 412 386 Z"/>
+            <circle class="pl-s s-mamillaria" data-s="mamillaria" cx="414" cy="414" r="10"/>
+            <path class="pl-stalk" d="M 402 420 C 390 432 382 442 378 452"/>
+            <circle class="pl-hypophyse" cx="376" cy="463" r="11"/>
+            <path class="pl-stem" d="M 476 420 C 496 432 510 452 516 478 L 532 600 C 536 626 522 644 498 646 C 474 648 458 634 454 610 L 444 492 C 441 460 452 434 476 420 Z"/>
+            <g class="pl-cereb">
+              <path d="M 592 470 C 618 434 686 424 738 446 C 792 468 812 520 790 566 C 768 610 704 628 652 608 C 602 588 576 526 592 470 Z"/>
+              <path class="pl-hatchlines" d="M 606 470 C 646 442 716 442 762 470 M 594 502 C 644 470 722 470 780 506 M 596 536 C 648 504 724 506 782 544 M 610 570 C 656 540 720 542 768 578"/>
+            </g>
+            <path class="pl-s s-parahippo" data-s="parahippo" d="M 560 470 C 536 496 502 514 462 518 C 442 520 426 516 414 508 L 424 486 C 434 492 448 495 462 493 C 494 489 522 474 540 452 Z"/>
+            <path class="pl-s s-hippocampus" data-s="hippocampus" d="M 614 348 C 602 398 562 440 506 458 C 488 464 473 464 461 458 C 466 442 480 431 500 424 C 546 408 578 380 590 340 Z"/>
+            <ellipse class="pl-s s-amygdala" data-s="amygdala" cx="443" cy="446" rx="16" ry="12" transform="rotate(-16 443 446)"/>
           </g>
-
-          <!-- Gyrus parahippocampalis (Band unter dem Hippocampus) -->
-          <path class="pl-s s-parahippo" data-s="parahippo" d="M 560 470
-            C 536 496 502 514 462 518
-            C 442 520 426 516 414 508
-            L 424 486
-            C 434 492 448 495 462 493
-            C 494 489 522 474 540 452 Z"/>
-
-          <!-- Hippocampus (Bogen im Temporallappen, vom Splenium nach vorn-unten) -->
-          <path class="pl-s s-hippocampus" data-s="hippocampus" d="M 614 348
-            C 602 398 562 440 506 458
-            C 488 464 473 464 461 458
-            C 466 442 480 431 500 424
-            C 546 408 578 380 590 340 Z"/>
-
-          <!-- Amygdala (Mandel vor dem Hippocampus-Kopf) -->
-          <ellipse class="pl-s s-amygdala" data-s="amygdala" cx="443" cy="446" rx="16" ry="12" transform="rotate(-16 443 446)"/>
-
-          <!-- Beschriftungen -->
           <g class="pl-labels">
-            <g class="pl-label" data-s="cinguli">
-              <path d="M 460 168 L 460 116 L 520 116"/>
-              <text x="526" y="120">⑤ Gyrus cinguli</text>
-            </g>
-            <g class="pl-label" data-s="fornix">
-              <path d="M 452 322 L 452 282 L 250 282 L 226 262"/>
-              <text x="220" y="256" text-anchor="end">② Fornix</text>
-            </g>
-            <g class="pl-label" data-s="thalamus">
-              <path d="M 448 338 L 340 352 L 212 352"/>
-              <text x="206" y="356" text-anchor="end">④ Ncll. ant. thalami</text>
-            </g>
-            <g class="pl-label" data-s="mamillaria">
-              <path d="M 408 420 L 310 452 L 214 452"/>
-              <text x="208" y="456" text-anchor="end">③ Corpora mamillaria</text>
-            </g>
-            <g class="pl-label" data-s="amygdala">
-              <path d="M 436 456 L 400 546 L 322 546"/>
-              <text x="316" y="550" text-anchor="end">⑦ Amygdala</text>
-            </g>
-            <g class="pl-label" data-s="hippocampus">
-              <path d="M 606 380 L 690 332 L 800 332"/>
-              <text x="806" y="336">① Hippo-<tspan x="806" dy="17">campus</tspan></text>
-            </g>
-            <g class="pl-label" data-s="parahippo">
-              <path d="M 490 508 L 520 596 L 552 596"/>
-              <text x="558" y="592">⑥ Gyrus para-<tspan x="558" dy="17">hippocampalis</tspan></text>
-            </g>
-            <g class="pl-label pl-label-passive">
-              <path d="M 376 474 L 350 540 L 300 578"/>
-              <text x="294" y="592" text-anchor="end">Hypophyse</text>
-            </g>
-            <g class="pl-label pl-label-passive">
-              <path d="M 760 590 L 792 618 L 812 618"/>
-              <text x="700" y="646">Kleinhirn</text>
-            </g>
-            <g class="pl-label pl-label-passive">
-              <path d="M 470 210 L 470 238"/>
-              <text x="404" y="200">Balken</text>
-            </g>
+            <g class="pl-label" data-s="cinguli"><path d="M 460 168 L 460 116 L 520 116"/><text x="526" y="120">⑤ Gyrus cinguli</text></g>
+            <g class="pl-label" data-s="fornix"><path d="M 452 322 L 452 282 L 250 282 L 226 262"/><text x="220" y="256" text-anchor="end">② Fornix</text></g>
+            <g class="pl-label" data-s="thalamus"><path d="M 448 338 L 340 352 L 212 352"/><text x="206" y="356" text-anchor="end">④ Ncll. ant. thalami</text></g>
+            <g class="pl-label" data-s="mamillaria"><path d="M 408 420 L 310 452 L 214 452"/><text x="208" y="456" text-anchor="end">③ Corpora mamillaria</text></g>
+            <g class="pl-label" data-s="amygdala"><path d="M 436 456 L 400 546 L 322 546"/><text x="316" y="550" text-anchor="end">⑦ Amygdala</text></g>
+            <g class="pl-label" data-s="hippocampus"><path d="M 606 380 L 690 332 L 800 332"/><text x="806" y="336">① Hippo-<tspan x="806" dy="17">campus</tspan></text></g>
+            <g class="pl-label" data-s="parahippo"><path d="M 490 508 L 520 596 L 552 596"/><text x="558" y="592">⑥ Gyrus para-<tspan x="558" dy="17">hippocampalis</tspan></text></g>
+            <g class="pl-label pl-label-passive"><path d="M 376 474 L 350 540 L 300 578"/><text x="294" y="592" text-anchor="end">Hypophyse</text></g>
+            <g class="pl-label pl-label-passive"><path d="M 760 590 L 792 618 L 812 618"/><text x="700" y="646">Kleinhirn</text></g>
+            <g class="pl-label pl-label-passive"><path d="M 470 210 L 470 238"/><text x="404" y="200">Balken</text></g>
           </g>
         </svg>
       </div>
-      <figcaption class="fig-cap"><strong>Abb. 1</strong> — Stilisierte Innenansicht der rechten Hirnhälfte (Blick von links). Farbig: die Kernstrukturen des limbischen Systems. Tippe auf eine Struktur oder einen Eintrag der Liste, um sie hervorzuheben. <span class="min-f">Der Balken (Corpus callosum) und die Ventrikel sind angedeutet — sie gehören <em>nicht</em> zum limbischen System, dienen aber als Landmarken.</span></figcaption>
+      <figcaption class="fig-cap"><span class="fig-no">Tafel I</span> Innenansicht der rechten Hirnhälfte (Blick von links), Hippocampus und Amygdala freigelegt gedacht. Tippe eine Struktur oder einen Eintrag der Liste an, um sie hervorzuheben. Balken und Hypophyse gehören <em>nicht</em> dazu — sie sind Landmarken.</figcaption>
     </figure>
 
     <ul class="legend" id="plateLegend">
       <li><button type="button" data-s="hippocampus"><i class="sw sw-hippocampus"></i>① Hippocampus</button></li>
       <li><button type="button" data-s="fornix"><i class="sw sw-fornix"></i>② Fornix</button></li>
-      <li><button type="button" data-s="mamillaria"><i class="sw sw-mamillaria"></i>③ Mamillarkörper</button></li>
-      <li><button type="button" data-s="thalamus"><i class="sw sw-thalamus"></i>④ Vordere Thalamuskerne</button></li>
+      <li><button type="button" data-s="mamillaria"><i class="sw sw-mamillaria"></i>③ Corpora mamillaria</button></li>
+      <li><button type="button" data-s="thalamus"><i class="sw sw-thalamus"></i>④ Ncll. anteriores thalami</button></li>
       <li><button type="button" data-s="cinguli"><i class="sw sw-cinguli"></i>⑤ Gyrus cinguli</button></li>
-      <li><button type="button" data-s="parahippo"><i class="sw sw-parahippo"></i>⑥ Gyrus parahippocampalis</button></li>
+      <li><button type="button" data-s="parahippo"><i class="sw sw-parahippo"></i>⑥ G. parahippocampalis</button></li>
       <li><button type="button" data-s="amygdala"><i class="sw sw-amygdala"></i>⑦ Amygdala</button></li>
     </ul>
 
-    <div class="cards-grid">
-      <article class="s-card" data-s="hippocampus">
-        <h3><i class="sw sw-hippocampus"></i>Hippocampus <span class="latin">„Seepferdchen“</span></h3>
-        <p class="v-b">Der Star des Systems. Er liegt tief im Schläfenlappen — auf jeder Seite einer — und entscheidet mit, was du dir dauerhaft merkst. Sein Name kommt daher, dass er fein herauspräpariert an ein Seepferdchen erinnert (zugegeben: mit viel Fantasie).</p>
-        <p class="v-f">Die wichtigste Struktur des Systems, beidseits an der mittleren Unterseite des Temporallappens. Im Querschnitt zeigt er eine im Gehirn einzigartige, <strong>eingerollte Rindenstruktur</strong> — wie eine Biskuitrolle. In dieser Rolle kreisen Informationen zwischen Nervenzellen: die Grundlage dafür, dass aus Kurzzeit- Langzeitgedächtnis wird.</p>
-        <p class="v-p">Zentrale Struktur der <strong>Gedächtniskonsolidierung</strong>, beidseits am medialen Temporallappen, im Boden des Unterhorns des Seitenventrikels. Der Querschnitt zeigt die charakteristisch eingerollte Rinde („Biskuitrolle“) — Substrat des internen Erregungskreisens, das über <strong>Langzeitpotenzierung</strong> Inhalte stabilisiert. Er ist nicht der Speicherort des Gedächtnisses, sondern dessen Schreibkopf.</p>
-      </article>
-
-      <article class="s-card" data-s="fornix">
-        <h3><i class="sw sw-fornix"></i>Fornix <span class="latin">„das Gewölbe“</span></h3>
-        <p class="v-b">Die Datenautobahn des Hippocampus: ein Nervenfaser-Bogen, über den fast alle Informationen den Hippocampus verlassen.</p>
-        <p class="v-f">Der Hauptausgang des Hippocampus: Ein Faserbündel, das in einem eleganten Bogen <strong>unter dem Balken</strong> entlangzieht — nach hinten, oben und wieder nach vorn bis zu den Mamillarkörpern.</p>
-        <p class="v-p">Efferenzbogen des Hippocampus: zieht als Gewölbe unter dem Corpus callosum nach rostral und endet größtenteils in den Corpora mamillaria. Merke die Lagebeziehung — der Fornix läuft <em>unter</em> dem Balken, der Gyrus cinguli <em>über</em> ihm.</p>
-      </article>
-
-      <article class="s-card" data-s="mamillaria">
-        <h3><i class="sw sw-mamillaria"></i>Mamillarkörper <span class="latin">Corpora mamillaria</span></h3>
-        <p class="v-b">Zwei kleine Kügelchen an der Unterseite des Gehirns — die nächste Station der Erinnerungs-Schleife.</p>
-        <p class="v-f">Zwei kugelige Kerne am <strong>Hypothalamus</strong> (einem Teil des Zwischenhirns), direkt hinter der Hypophyse gelegen. Ihren Namen verdanken sie den Anatomen früherer Jahrhunderte, die hier Brustwarzen (<em>mamillae</em>) erkannten — die Fantasie war offenbar groß.</p>
-        <p class="v-p">Paarige Kerngebiete des kaudalen Hypothalamus (Diencephalon), Hauptzielgebiet des Fornix und damit obligate Station des Papez-Kreises. Klinisch relevant: Schädigungen hier stören die Konsolidierung ähnlich wie Hippocampusläsionen.</p>
-      </article>
-
-      <article class="s-card" data-s="thalamus">
-        <h3><i class="sw sw-thalamus"></i>Vordere Thalamuskerne <span class="latin">Nuclei anteriores thalami</span></h3>
-        <p class="v-b">Der Thalamus ist der Türsteher des Bewusstseins — er entscheidet, welche Informationen „nach oben“ dürfen. Seinen vorderen Teil hat er fest ans limbische System abgestellt.</p>
-        <p class="v-f">Der Thalamus filtert, welche Sinnesinformationen die Großhirnrinde und damit unser Bewusstsein erreichen — der berühmte „Türsteher“. Seine <strong>vorderen Kerne</strong> sind dauerhaft für das limbische System reserviert und bilden die nächste Station des Kreises.</p>
-        <p class="v-p">Die Ncll. anteriores erhalten ihre Hauptafferenz aus den Corpora mamillaria <span class="latin-note">(über das Vicq-d’Azyr-Bündel, den Tractus mamillothalamicus)</span> und projizieren weiter zum Gyrus cinguli. Funktionell: das diencephale Nadelöhr der Konsolidierungsschleife.</p>
-      </article>
-
-      <article class="s-card" data-s="cinguli">
-        <h3><i class="sw sw-cinguli"></i>Gyrus cinguli <span class="latin">„Gürtelwindung“</span></h3>
-        <p class="v-b">Eine dicke Hirnwindung, die wie ein Gürtel oben über den Balken verläuft — der Rückweg der Schleife.</p>
-        <p class="v-f">Vom lateinischen <em>cingulum</em>, der Gürtel: Diese Windung legt sich bogenförmig <strong>über den Balken</strong>. Da die Schleife nicht rückwärts durch den Fornix laufen kann, nimmt die Information hier den Weg „obenrum“ zurück.</p>
-        <p class="v-p">Rückschenkel des Papez-Kreises oberhalb des Corpus callosum. Direkt auf dem Balken liegt noch das <strong>Indusium griseum</strong> — ein dünner, funktionell weitgehend bedeutungsloser Rest der Hippocampusanlage. Prüfungsklassiker: Verwechsle es nicht mit dem eigentlichen Rückweg über den Gyrus cinguli.</p>
-      </article>
-
-      <article class="s-card" data-s="parahippo">
-        <h3><i class="sw sw-parahippo"></i>Gyrus parahippocampalis <span class="latin">„neben dem Seepferdchen“</span></h3>
-        <p class="v-b">Die Windung direkt neben dem Hippocampus — sie führt die Schleife wieder zurück zum Start.</p>
-        <p class="v-f">Der Gyrus cinguli geht hinten nahtlos in diese Windung über, die an der Unterseite des Temporallappens <strong>über bzw. um den Hippocampus</strong> liegt. Von hier tritt die Information wieder in den Hippocampus ein — der Kreis schließt sich.</p>
-        <p class="v-p">Fortsetzung des Gyrus cinguli um das Splenium herum an die mediobasale Temporallappenfläche; Eingangstor der Schleife zurück in den Hippocampus. Wer ihn im Präparat sucht: Er verdeckt den Hippocampus von medial-basal.</p>
-      </article>
-
-      <article class="s-card" data-s="amygdala">
-        <h3><i class="sw sw-amygdala"></i>Amygdala <span class="latin">„Mandelkern“</span></h3>
-        <p class="v-b">Ein mandelförmiger Kern direkt vor dem Hippocampus — dein eingebauter Alarmknopf. Um sie geht es im Kapitel <a href="#amygdala">Angst &amp; Emotionen</a>.</p>
-        <p class="v-f">Mandelform, Mandelgröße, Lage direkt <strong>vor dem Hippocampus</strong> im Temporallappen. Sie ist die einzige Kernstruktur, die nicht im Papez-Kreis steckt — ihr großes Thema sind <strong>Emotionen</strong>, besonders Angst und Wut.</p>
-        <p class="v-p">Kernkomplex rostral des Hippocampuskopfes. Zwei Verschaltungen sind prüfungsrelevant: die Efferenz zum Hypothalamus über die <strong>Stria terminalis</strong> (Angstreaktion) und die direkte Verbindung zum <strong>Hippocampus</strong> (emotionale Gedächtnisverstärkung).</p>
-      </article>
+    <div class="split">
+      <div class="prose">
+        <dl class="strukturliste">
+          <div class="s-item" data-s="hippocampus">
+            <dt><i class="sw sw-hippocampus"></i>Hippocampus <span class="latin">„Seepferdchen“</span></dt>
+            <dd>Zentrale Struktur der <strong>Gedächtniskonsolidierung</strong>, beidseits am medialen Temporallappen im Boden des Unterhorns des Seitenventrikels. Er ist nicht Speicherort des Gedächtnisses, sondern dessen <em>Schreibkopf</em>: In seiner eingerollten Rinde kreist Erregung, bis Inhalte kortikal verankert sind (→ Tafel III).</dd>
+          </div>
+          <div class="s-item" data-s="fornix">
+            <dt><i class="sw sw-fornix"></i>Fornix <span class="latin">„das Gewölbe“</span></dt>
+            <dd>Efferenzbogen des Hippocampus: zieht als Gewölbe <strong>unter dem Corpus callosum</strong> nach rostral und endet größtenteils in den Corpora mamillaria. Lagebeziehung merken: Fornix <em>unter</em> dem Balken, Gyrus cinguli <em>über</em> ihm.</dd>
+          </div>
+          <div class="s-item" data-s="mamillaria">
+            <dt><i class="sw sw-mamillaria"></i>Corpora mamillaria <span class="latin">Mamillarkörper</span></dt>
+            <dd>Paarige Kerngebiete des kaudalen <strong>Hypothalamus</strong> (Diencephalon), direkt hinter der Hypophyse; Hauptziel des Fornix und obligate Station des Papez-Kreises. Läsionen stören die Konsolidierung ähnlich wie Hippocampusschäden. Der Name: Anatomen sahen hier <em>mamillae</em> — Brustwarzen.</dd>
+          </div>
+          <div class="s-item" data-s="thalamus">
+            <dt><i class="sw sw-thalamus"></i>Nuclei anteriores thalami <span class="latin">vordere Thalamuskerne</span></dt>
+            <dd>Der Thalamus ist der Türsteher zum Bewusstsein; seine <strong>vorderen Kerne</strong> sind fest ans limbische System abgestellt. Afferenz aus den Mamillarkörpern über das <strong>Vicq-d’Azyr-Bündel</strong> (Tractus mamillothalamicus), Projektion weiter zum Gyrus cinguli.</dd>
+          </div>
+          <div class="s-item" data-s="cinguli">
+            <dt><i class="sw sw-cinguli"></i>Gyrus cinguli <span class="latin">„Gürtelwindung“</span></dt>
+            <dd>Rückschenkel des Papez-Kreises, bogenförmig <strong>über dem Balken</strong>. Direkt auf dem Balken liegt zusätzlich das <strong>Indusium griseum</strong> — ein funktionell bedeutungsloser Rest der Hippocampusanlage. Prüfungsklassiker: nicht mit dem eigentlichen Rückweg verwechseln.</dd>
+          </div>
+          <div class="s-item" data-s="parahippo">
+            <dt><i class="sw sw-parahippo"></i>Gyrus parahippocampalis <span class="latin">„neben dem Seepferdchen“</span></dt>
+            <dd>Setzt den Gyrus cinguli um das Splenium herum an die mediobasale Temporallappenfläche fort und liegt über bzw. um den Hippocampus — das <strong>Eingangstor der Schleife zurück</strong> in den Hippocampus. Im Präparat verdeckt er ihn von medial-basal.</dd>
+          </div>
+          <div class="s-item" data-s="amygdala">
+            <dt><i class="sw sw-amygdala"></i>Amygdala <span class="latin">Corpus amygdaloideum, „Mandelkern“</span></dt>
+            <dd>Mandelform, Mandelgröße, direkt <strong>rostral des Hippocampuskopfes</strong>. Die einzige Kernstruktur außerhalb des Papez-Kreises; ihre zwei prüfungsrelevanten Bahnen: <strong>Stria terminalis</strong> → Hypothalamus (Angstreaktion, Kap. 06) und die direkte Verbindung zum <strong>Hippocampus</strong> (emotionale Gedächtnisverstärkung).</dd>
+          </div>
+        </dl>
+      </div>
+      <figure class="art-fig art-tilt-r">
+        <img src="assets/seepferdchen.jpg" alt="Gravierter Vergleich: links ein Seepferdchen, rechts ein herauspräparierter Hippocampus von auffallend ähnlicher, geschwungener Form" width="1000" height="1000" loading="lazy">
+        <figcaption><span class="fig-no">Tafel II</span> Der Namensgeber: fein herauspräpariert erinnert der Hippocampus an ein Seepferdchen — <em>Hippocampus</em> ist schlicht dessen Gattungsname. (Stilisierte Gegenüberstellung.)</figcaption>
+      </figure>
     </div>
 
-    <aside class="marginalia min-f">
+    <aside class="marginalia">
       <span class="tag">Umstritten</span>
-      <p>Je nach Lehrbuch werden weitere Regionen dazugezählt — etwa die <strong>Septumregion</strong> vorn unter dem Balken. Bei solchen Kandidaten ist die Zugehörigkeit Definitionssache; die sieben Strukturen oben bilden den unstrittigen Kern.</p>
+      <p>Je nach Lehrbuch kommen weitere Regionen dazu — etwa die <strong>Septumregion</strong> vorn unter dem Balken. Bei solchen Kandidaten ist die Zugehörigkeit Definitionssache; die sieben Strukturen der Tafel bilden den unstrittigen Kern.</p>
     </aside>
   </div>
 </section>
@@ -331,47 +221,85 @@
     <span class="ch-num" aria-hidden="true">03</span>
     <div>
       <h2 class="ch-title">Funktion I — Vom Moment zur Erinnerung</h2>
-      <p class="ch-lede">Warum du eine Telefonnummer nach zwei Minuten wieder vergisst — außer, dein limbisches System springt an.</p>
+      <p class="ch-lede">Drei Instanzen, ein Flaschenhals: die Konsolidierung.</p>
     </div>
   </header>
 
   <div class="ch-body">
     <div class="prose">
-      <p class="v-b">Stell dir vor: Jemand nennt dir eine wichtige Telefonnummer. Dein Handy ist kaputt, aufschreiben geht nicht. Also sagst du sie dir immer wieder vor. So hältst du sie vielleicht <strong>30 Sekunden bis zwei Minuten</strong> im Kopf — das ist dein Kurzzeitgedächtnis. Soll die Nummer <em>bleiben</em>, muss dein Gehirn sie aktiv „abspeichern“. Und genau dafür braucht es das limbische System.</p>
-      <p class="v-f">Das Gedächtnis sitzt nicht an einem Ort. Das <strong>Kurzzeitgedächtnis</strong> ist vor allem eine Leistung des präfrontalen Kortex — es trägt etwa 30 Sekunden bis 2 Minuten. Das <strong>Langzeitgedächtnis</strong> liegt weit verteilt in der Großhirnrinde. Der Weg vom einen ins andere heißt <strong>Gedächtniskonsolidierung</strong> — und für diesen Schritt ist der Hippocampus unverzichtbar: Ohne ihn wird nichts Neues dauerhaft gespeichert.</p>
-      <p class="v-p">Drei Instanzen, klar getrennt: <strong>Kurzzeit-/Arbeitsgedächtnis</strong> (präfrontaler Kortex, Sekunden bis wenige Minuten), <strong>Konsolidierung</strong> (Hippocampus und Papez-Kreis) und <strong>Langzeitspeicher</strong> (weit verteilte kortikale Netzwerke). Der Hippocampus ist dabei nicht Speicherort, sondern Konsolidierungs-Engine: Inhalte kreisen in seiner eingerollten Rindenstruktur und zusätzlich durch die große Schleife des limbischen Systems, bis sie kortikal verankert sind.</p>
+      <p class="lead">Das Gedächtnis wohnt nicht an einem Ort. Das <strong>Kurzzeit- bzw. Arbeitsgedächtnis</strong> ist eine Leistung des präfrontalen Kortex und trägt eine ständig wiederholte Information — eine Telefonnummer etwa — rund <strong>30 Sekunden bis 2 Minuten</strong>. Das <strong>Langzeitgedächtnis</strong> liegt weit verteilt in der Großhirnrinde. Der Weg vom einen ins andere heißt <strong>Gedächtniskonsolidierung</strong> — und genau dieser Schritt ist die Kernaufgabe des limbischen Systems: Ohne Hippocampus wird nichts Neues dauerhaft gespeichert.</p>
+    </div>
 
-      <figure class="figure">
-        <div class="memflow" role="img" aria-label="Ablauf: Kurzzeitgedächtnis im präfrontalen Kortex, dann Konsolidierung durch das limbische System, dann Langzeitgedächtnis in der Großhirnrinde">
-          <div class="mf-box">
-            <span class="mf-tag">präfrontaler Kortex</span>
-            <strong>Kurzzeitgedächtnis</strong>
-            <span class="mf-note">≈ 30 s – 2 min</span>
-          </div>
-          <div class="mf-arrow" aria-hidden="true"><span>Konsolidierung</span></div>
-          <div class="mf-box mf-box-accent">
-            <span class="mf-tag">limbisches System</span>
-            <strong>Die Schleife läuft</strong>
-            <span class="mf-note">Hippocampus &amp; Papez-Kreis</span>
-          </div>
-          <div class="mf-arrow" aria-hidden="true"><span>Verankerung</span></div>
-          <div class="mf-box">
-            <span class="mf-tag">Großhirnrinde, verteilt</span>
-            <strong>Langzeitgedächtnis</strong>
-            <span class="mf-note">Fakten &amp; Erlebtes</span>
-          </div>
-        </div>
-        <figcaption class="fig-cap"><strong>Abb. 2</strong> — Der Weg einer Erinnerung. Die Konsolidierung in der Mitte ist der Flaschenhals — und der Job des limbischen Systems.</figcaption>
+    <figure class="figure">
+      <div class="plate plate-mini">
+        <svg viewBox="0 0 950 560" role="img" aria-labelledby="memTitle">
+          <title id="memTitle">Der Weg einer Erinnerung durch das Gehirn: präfrontaler Kortex, limbische Schleife, verteilte Großhirnrinde</title>
+          <g filter="url(#wobble)">
+            <path class="pl-cortex" d="M 100 320 C 92 235 138 145 240 96 C 330 54 460 44 570 62 C 690 82 780 145 812 236 C 832 296 828 350 806 394 C 794 417 778 432 758 440 L 706 455 C 688 461 676 472 668 489 C 654 519 620 538 578 534 L 500 525 C 452 519 410 502 380 478 L 330 489 C 240 504 152 472 118 400 C 104 372 102 350 100 320 Z"/>
+            <!-- Präfrontaler Kortex, getönt -->
+            <path class="mem-pfc" d="M 104 300 C 104 230 146 156 236 106 C 268 90 304 79 342 72 L 352 200 C 300 230 250 272 224 322 L 118 380 C 108 352 104 330 104 300 Z"/>
+            <!-- Verteilte Speicher-Punkte im Kortex -->
+            <g class="mem-dots">
+              <circle cx="470" cy="98" r="7"/><circle cx="560" cy="86" r="5.5"/><circle cx="648" cy="112" r="7"/>
+              <circle cx="726" cy="168" r="6"/><circle cx="774" cy="248" r="7"/><circle cx="762" cy="342" r="5.5"/>
+              <circle cx="690" cy="428" r="6"/><circle cx="600" cy="490" r="6.5"/><circle cx="420" cy="96" r="5"/>
+            </g>
+            <!-- Limbische Schleife -->
+            <ellipse class="mem-loop" cx="470" cy="330" rx="150" ry="98"/>
+            <path class="mem-loop-arrow" d="M 330 300 C 345 250 420 222 480 232" marker-end="url(#arrowHead)"/>
+            <!-- Eingang -->
+            <path class="mem-in" d="M 208 250 C 250 262 292 286 330 316" marker-end="url(#arrowHead)"/>
+            <!-- Ausgang zu den Punkten -->
+            <path class="mem-out" d="M 590 268 C 640 220 690 180 726 176" marker-end="url(#arrowHead)"/>
+            <path class="mem-out" d="M 606 330 C 668 322 720 300 764 260" marker-end="url(#arrowHead)"/>
+          </g>
+          <g class="pl-labels">
+            <g class="pl-label-passive-strong"><path d="M 210 160 L 160 120 L 60 120"/><text x="60" y="106">Kurzzeitgedächtnis</text><text class="sub" x="60" y="142">präfrontaler Kortex · ≈ 30 s – 2 min</text></g>
+            <g class="pl-label-passive-strong"><path d="M 470 400 L 470 470 L 380 508"/><text x="180" y="530">Die Schleife läuft: Konsolidierung</text><text class="sub" x="180" y="552">Hippocampus &amp; Papez-Kreis rotieren den Inhalt</text></g>
+            <g class="pl-label-passive-strong"><path d="M 700 122 L 736 96 L 790 96"/><text x="620" y="52">Langzeitgedächtnis</text><text class="sub" x="620" y="76">weit verteilt in der Großhirnrinde</text></g>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="fig-cap"><span class="fig-no">Tafel III</span> Der Weg einer Erinnerung: Der präfrontale Kortex (petrol) hält sie kurz, die limbische Schleife (rot) rotiert sie, bis sie als verteiltes Muster (ocker) in der Rinde verankert ist. Die Schleife ist der Flaschenhals — und der Job dieses Systems.</figcaption>
+    </figure>
+
+    <div class="split split-rev">
+      <figure class="art-fig art-tilt-l">
+        <img src="assets/biskuit.jpg" alt="Gravierte Tafel einer aufgeschnittenen Biskuitrolle mit enger Spirale" width="900" height="900" loading="lazy">
+        <figcaption><span class="fig-no">Tafel IV·a</span> Das Merkbild: eine Biskuitrolle.</figcaption>
       </figure>
+      <figure class="figure">
+        <div class="plate plate-mini">
+          <svg viewBox="0 0 705 460" role="img" aria-labelledby="carollTitle">
+            <title id="carollTitle">Querschnitt durch den Hippocampus: Cornu ammonis und Gyrus dentatus greifen als zwei eingerollte Rindenbänder ineinander</title>
+            <g filter="url(#wobble-soft)">
+              <!-- Cornu ammonis: großes eingerolltes C -->
+              <path class="ca-band" d="M 150 120 C 250 60 400 70 470 160 C 530 238 512 350 430 396 C 360 434 270 420 226 360 C 192 314 200 250 246 220 C 288 192 348 200 374 240 C 394 272 386 314 354 332 C 330 345 300 340 288 318 L 310 300 C 318 312 334 314 344 306 C 362 292 364 268 350 252 C 330 228 288 226 262 248 C 226 278 224 326 252 360 C 288 402 356 408 408 372 C 472 328 482 240 434 178 C 378 106 254 100 172 152 Z"/>
+              <!-- Gyrus dentatus: kleineres C, greift von unten ein -->
+              <path class="gd-band" d="M 268 296 C 258 268 272 240 300 230 C 330 220 362 232 372 258 L 350 268 C 344 252 324 244 308 250 C 290 257 282 274 288 290 Z"/>
+              <!-- Subiculum-Übergang -->
+              <path class="sub-band" d="M 150 120 L 172 152 C 150 170 132 194 124 222 L 88 210 C 98 174 120 142 150 120 Z"/>
+            </g>
+            <g class="pl-labels">
+              <g class="pl-label-passive-strong"><path d="M 430 132 L 476 104 L 530 104"/><text x="416" y="72">Cornu ammonis</text><text class="sub" x="416" y="94">CA1 – CA4, eingerollt</text></g>
+              <g class="pl-label-passive-strong"><path d="M 316 262 L 400 424 L 440 424"/><text x="446" y="416">Gyrus dentatus</text><text class="sub" x="446" y="438">greift von innen ein</text></g>
+              <g class="pl-label-passive-strong"><path d="M 108 216 L 70 300 L 70 340"/><text x="40" y="366">Subiculum</text><text class="sub" x="40" y="388">Übergang zum G. parahippocampalis</text></g>
+            </g>
+          </svg>
+        </div>
+        <figcaption class="fig-cap"><span class="fig-no">Tafel IV·b</span> …und das Original: Im Querschnitt rollen sich <em>Cornu ammonis</em> und <em>Gyrus dentatus</em> ineinander — eine Rindenarchitektur, die es sonst nirgends im Gehirn gibt. In dieser Rolle kreist die Erregung, die Inhalte festschreibt.</figcaption>
+      </figure>
+    </div>
 
-      <aside class="marginalia min-p">
-        <span class="tag tag-profi">Profi</span>
-        <p><strong>Langzeitpotenzierung (LTP):</strong> Das Kreisen der Erregung im Hippocampus ist mehr als Wiederholung — wiederholte Aktivierung derselben Synapsen verstärkt deren Übertragung langfristig. LTP gilt als zelluläres Korrelat des Lernens und ist der Mechanismus, mit dem aus „oft gedacht“ irgendwann „fest verdrahtet“ wird. Vorgriff aufs nächste Kapitel: Konsolidiert wird dabei nur das <em>deklarative</em> Gedächtnis (Fakten, Erlebtes) — Bewegungsabläufe laufen über andere Systeme.</p>
+    <div class="prose">
+      <aside class="marginalia m-profi">
+        <span class="tag tag-profi">Mechanismus</span>
+        <p><strong>Langzeitpotenzierung (LTP):</strong> Das Kreisen ist mehr als Wiederholung — wiederholte Aktivierung derselben Synapsen verstärkt deren Übertragung langfristig. LTP gilt als zelluläres Korrelat des Lernens: So wird aus „oft gedacht“ irgendwann „fest verdrahtet“. Konsolidiert wird dabei nur das <em>deklarative</em> Gedächtnis — die Landkarte dazu in Kapitel 05.</p>
       </aside>
 
       <div class="merke">
         <span class="tag tag-merke">Merke</span>
-        <p>Der Hippocampus ist nicht der <em>Speicher</em> deines Gedächtnisses — er ist der <strong>Schreibvorgang</strong>. Kurzzeitgedächtnis: präfrontaler Kortex. Langzeitgedächtnis: verteilte Großhirnrinde. Dazwischen: das limbische System.</p>
+        <p>Der Hippocampus ist nicht der <em>Speicher</em> — er ist der <strong>Schreibvorgang</strong>. Kurzzeitgedächtnis: präfrontaler Kortex. Langzeitgedächtnis: verteilte Großhirnrinde. Dazwischen: die Schleife.</p>
       </div>
     </div>
   </div>
@@ -383,103 +311,105 @@
     <span class="ch-num" aria-hidden="true">04</span>
     <div>
       <h2 class="ch-title">Der Papez-Kreis</h2>
-      <p class="ch-lede">Die Gedächtnis-Schleife — und der Merkspruch, der sie unvergesslich macht.</p>
+      <p class="ch-lede">Die Konsolidierungsschleife — direkt auf der Anatomie.</p>
     </div>
   </header>
 
   <div class="ch-body">
     <div class="prose">
-      <p class="v-b">Damit sich dein Gehirn etwas dauerhaft merkt, muss die Information einmal durch eine große Schleife rotieren: den <strong>Papez-Kreis</strong>. Sechs Stationen, ein Rundkurs — und zum Glück gibt es einen Merkspruch, der alles zusammenhält:</p>
-      <p class="v-f">Der Hippocampus schafft die Konsolidierung nicht allein: Neben seinem inneren Kreisen braucht er einen <strong>äußeren Kreislauf</strong>, durch den die Inhalte rotieren — den Papez-Kreis (auch Papez-Neuronenkreis). Er verbindet fast alle Strukturen aus Kapitel 02 zu einem Rundkurs. Der Merkspruch dazu:</p>
-      <p class="v-p">Der <strong>Papez-Kreis</strong> ist die zentrale Konsolidierungsschleife des limbischen Systems <span class="latin-note">(beschrieben 1937 von James Papez — ursprünglich als Emotionskreis gedacht, heute vor allem als Gedächtnisschleife verstanden)</span>. Läsionen an <em>jeder beliebigen</em> Station erzeugen ähnliche Konsolidierungsdefizite — das macht ihn klinisch wie prüfungstechnisch zum Pflichtstoff. Der Merkspruch:</p>
+      <p class="lead">Der Hippocampus schafft die Konsolidierung nicht allein: Neben dem inneren Kreisen braucht er einen <strong>äußeren Kreislauf</strong>, durch den die Inhalte rotieren — den <strong>Papez-Kreis</strong> <span class="latin-note">(James Papez, 1937; ursprünglich als Emotionskreis gedacht, heute vor allem als Gedächtnisschleife verstanden)</span>. Läsionen an <em>jeder beliebigen</em> Station erzeugen ähnliche Konsolidierungsdefizite — das macht ihn klinisch wie prüfungstechnisch zum Pflichtstoff.</p>
+    </div>
 
-      <div class="merkspruch" aria-label="Merkspruch">
+    <div class="merkspruch">
+      <div class="ms-text">
+        <span class="tag tag-ms">Der Merkspruch</span>
         <p class="ms-line">„<span data-ms="hippocampus">Hipster</span> <span data-ms="fornix">fordern</span> <span data-ms="mamillaria">Mamas</span> <span data-ms="thalamus">antiken</span> <span data-ms="gyri">Doppel-Gyros</span>.“</p>
-        <p class="ms-credit">Merkspruch nach Dr. Janis (Neurologie mit Dr. Janis), angelehnt an einen DocCheck-Klassiker. Warum Hipster antikes Gyros bestellen? Unklar — aber genau deshalb merkt man es sich.</p>
+        <ul class="ms-map">
+          <li><b>Hipster</b> → Hippocampus</li>
+          <li><b>fordern</b> → Fornix</li>
+          <li><b>Mamas</b> → Corpora mamillaria</li>
+          <li><b>antiken</b> → Ncll. anteriores thalami</li>
+          <li><b>Doppel-Gyros</b> → Gyrus cinguli + Gyrus parahippocampalis</li>
+        </ul>
+        <p class="ms-credit">Nach Dr. Janis (Neurologie mit Dr. Janis), angelehnt an einen DocCheck-Klassiker. Warum Hipster antikes Gyros bestellen? Unklar — aber genau deshalb vergisst man es nie wieder.</p>
       </div>
+      <figure class="ms-art">
+        <img src="assets/gyros.jpg" alt="Illustration: Ein bärtiger Hipster mit Mütze und runder Brille bekommt von seiner Mutter feierlich ein mit Lorbeer geschmücktes Gyros überreicht, dahinter eine antike Säule" width="1400" height="933" loading="lazy">
+        <figcaption>Das Bestellbild — einmal gesehen, nie wieder vergessen.</figcaption>
+      </figure>
     </div>
 
     <figure class="figure">
-      <div class="papez-wrap">
-        <svg id="papezSvg" viewBox="0 0 780 590" role="img" aria-labelledby="papezTitle">
-          <title id="papezTitle">Der Papez-Kreis als Schleife mit sechs Stationen</title>
-          <defs>
-            <marker id="arrowHead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M 0 0 L 10 5 L 0 10 z"></path>
-            </marker>
-          </defs>
-          <!-- Flusspfeile (gegen den Uhrzeigersinn) -->
-          <g class="flowlines">
-            <path class="flow" d="M 300 496 C 220 480 160 448 132 408" marker-end="url(#arrowHead)"/>
-            <path class="flow" d="M 96 344 C 82 296 82 246 98 202" marker-end="url(#arrowHead)"/>
-            <path class="flow" d="M 136 140 C 168 102 224 74 292 60" marker-end="url(#arrowHead)"/>
-            <path class="flow" d="M 470 62 C 540 76 596 106 630 146" marker-end="url(#arrowHead)"/>
-            <path class="flow" d="M 682 208 C 698 252 698 300 684 346" marker-end="url(#arrowHead)"/>
-            <path class="flow" d="M 648 410 C 618 450 558 482 486 496" marker-end="url(#arrowHead)"/>
+      <div class="plate" id="papezPlate">
+        <svg viewBox="0 0 950 660" role="img" aria-labelledby="papezTitle">
+          <title id="papezTitle">Der Papez-Kreis eingezeichnet in die Innenansicht des Gehirns, mit sechs nummerierten Stationen</title>
+          <g class="ghost" filter="url(#wobble)">
+            <path class="pl-cortex" d="M 100 340 C 92 250 138 152 240 100 C 330 56 460 46 570 64 C 690 84 780 150 812 244 C 832 306 828 362 806 408 C 794 432 778 448 758 456 L 706 472 C 688 478 676 490 668 508 C 654 540 620 560 578 556 L 500 546 C 452 540 410 522 380 496 L 330 508 C 240 524 152 490 118 414 C 104 384 102 362 100 340 Z"/>
+            <path class="pl-s s-cinguli" d="M 300 302 C 293 235 352 180 454 170 C 562 160 642 196 664 250 C 673 272 675 290 672 304 L 620 298 C 622 286 620 272 612 258 C 590 220 530 199 450 207 C 370 215 325 250 330 300 Z"/>
+            <path class="pl-cc" d="M 330 300 C 325 250 370 215 450 207 C 530 199 590 220 612 258 C 620 272 622 286 620 298 L 585 294 C 587 272 568 250 518 240 C 450 227 385 245 368 278 C 362 290 361 295 362 300 Z"/>
+            <path class="pl-s s-fornix" d="M 602 306 C 558 328 498 338 452 336 C 428 335 417 342 410 358 L 403 380 L 382 372 L 391 346 C 400 324 424 316 452 318 C 496 320 552 312 592 290 Z"/>
+            <ellipse class="pl-s s-thalamus" cx="500" cy="352" rx="58" ry="34"/>
+            <ellipse class="pl-s s-thalamus-ant" cx="452" cy="336" rx="20" ry="14"/>
+            <path class="pl-hypo" d="M 412 386 C 420 374 436 370 452 374 C 458 386 457 398 449 408 C 434 412 420 402 412 386 Z"/>
+            <circle class="pl-s s-mamillaria" cx="414" cy="414" r="10"/>
+            <path class="pl-stem" d="M 476 420 C 496 432 510 452 516 478 L 532 600 C 536 626 522 644 498 646 C 474 648 458 634 454 610 L 444 492 C 441 460 452 434 476 420 Z"/>
+            <path class="pl-s s-parahippo" d="M 560 470 C 536 496 502 514 462 518 C 442 520 426 516 414 508 L 424 486 C 434 492 448 495 462 493 C 494 489 522 474 540 452 Z"/>
+            <path class="pl-s s-hippocampus" d="M 614 348 C 602 398 562 440 506 458 C 488 464 473 464 461 458 C 466 442 480 431 500 424 C 546 408 578 380 590 340 Z"/>
+            <ellipse class="pl-s s-amygdala" cx="443" cy="446" rx="16" ry="12" transform="rotate(-16 443 446)"/>
           </g>
-          <!-- Zentrum -->
-          <g class="papez-center">
-            <text x="390" y="262" text-anchor="middle" class="pc-kicker">Rundkurs der</text>
-            <text x="390" y="300" text-anchor="middle" class="pc-title">Konsolidierung</text>
-            <text x="390" y="330" text-anchor="middle" class="pc-sub">6 Stationen · eine Richtung</text>
+          <!-- Die Schleife: drei Segmente in Laufrichtung -->
+          <g class="loop">
+            <path class="loop-path" d="M 585 418
+              C 606 392 615 366 608 344
+              C 580 328 528 322 480 324
+              C 462 325 450 330 442 340
+              C 428 356 418 378 414 396" marker-end="url(#arrowHead)"/>
+            <path class="loop-path" d="M 414 396
+              C 424 370 434 350 448 338
+              C 448 302 438 266 432 232
+              C 474 200 558 196 626 238
+              C 652 256 662 280 658 304" marker-end="url(#arrowHead)"/>
+            <path class="loop-path" d="M 658 304
+              C 652 344 630 390 596 428
+              C 570 458 542 476 514 484
+              C 498 488 484 486 472 478" marker-end="url(#arrowHead)"/>
           </g>
           <!-- Stationen -->
-          <g class="station st-hippocampus" data-st="hippocampus" tabindex="0" role="button" aria-label="Station 1: Hippocampus">
-            <rect x="300" y="466" width="180" height="66" rx="10"/>
-            <text class="st-name" x="390" y="494" text-anchor="middle">Hippocampus</text>
-            <text class="st-sub" x="390" y="514" text-anchor="middle">Start &amp; Ziel</text>
-            <g class="ms-chip"><rect x="318" y="452" width="144" height="26" rx="13"/><text x="390" y="470" text-anchor="middle">„Hipster …“</text></g>
+          <g class="loop-st" data-st="hippocampus" tabindex="0" role="button" aria-label="Station 1: Hippocampus">
+            <circle class="st-ring" cx="590" cy="412" r="21"/><text x="590" y="419">1</text>
           </g>
-          <g class="station st-fornix" data-st="fornix" tabindex="0" role="button" aria-label="Station 2: Fornix">
-            <rect x="42" y="356" width="180" height="66" rx="10"/>
-            <text class="st-name" x="132" y="384" text-anchor="middle">Fornix</text>
-            <text class="st-sub" x="132" y="404" text-anchor="middle">das Gewölbe</text>
-            <g class="ms-chip"><rect x="60" y="342" width="144" height="26" rx="13"/><text x="132" y="360" text-anchor="middle">„… fordern …“</text></g>
+          <g class="loop-st" data-st="fornix" tabindex="0" role="button" aria-label="Station 2: Fornix">
+            <circle class="st-ring" cx="516" cy="316" r="21"/><text x="516" y="323">2</text>
           </g>
-          <g class="station st-mamillaria" data-st="mamillaria" tabindex="0" role="button" aria-label="Station 3: Corpora mamillaria">
-            <rect x="42" y="152" width="196" height="66" rx="10"/>
-            <text class="st-name" x="140" y="180" text-anchor="middle">Corpora mamillaria</text>
-            <text class="st-sub" x="140" y="200" text-anchor="middle">am Hypothalamus</text>
-            <g class="ms-chip"><rect x="68" y="138" width="144" height="26" rx="13"/><text x="140" y="156" text-anchor="middle">„… Mamas …“</text></g>
+          <g class="loop-st" data-st="mamillaria" tabindex="0" role="button" aria-label="Station 3: Corpora mamillaria">
+            <circle class="st-ring" cx="392" cy="424" r="21"/><text x="392" y="431">3</text>
           </g>
-          <g class="station st-thalamus" data-st="thalamus" tabindex="0" role="button" aria-label="Station 4: Vordere Thalamuskerne">
-            <rect x="292" y="30" width="196" height="66" rx="10"/>
-            <text class="st-name" x="390" y="58" text-anchor="middle">Ncll. anteriores</text>
-            <text class="st-sub" x="390" y="78" text-anchor="middle">vorderer Thalamus</text>
-            <g class="ms-chip"><rect x="318" y="16" width="144" height="26" rx="13"/><text x="390" y="34" text-anchor="middle">„… antiken …“</text></g>
+          <g class="loop-st" data-st="thalamus" tabindex="0" role="button" aria-label="Station 4: Nuclei anteriores thalami">
+            <circle class="st-ring" cx="452" cy="336" r="19"/><text x="452" y="343">4</text>
           </g>
-          <g class="station st-cinguli" data-st="cinguli" tabindex="0" role="button" aria-label="Station 5: Gyrus cinguli">
-            <rect x="548" y="152" width="190" height="66" rx="10"/>
-            <text class="st-name" x="643" y="180" text-anchor="middle">Gyrus cinguli</text>
-            <text class="st-sub" x="643" y="200" text-anchor="middle">obenrum zurück</text>
-            <g class="ms-chip"><rect x="571" y="138" width="144" height="26" rx="13"/><text x="643" y="156" text-anchor="middle">„… Doppel-“</text></g>
+          <g class="loop-st" data-st="cinguli" tabindex="0" role="button" aria-label="Station 5: Gyrus cinguli">
+            <circle class="st-ring" cx="524" cy="192" r="21"/><text x="524" y="199">5</text>
           </g>
-          <g class="station st-parahippo" data-st="parahippo" tabindex="0" role="button" aria-label="Station 6: Gyrus parahippocampalis">
-            <rect x="536" y="356" width="214" height="66" rx="10"/>
-            <text class="st-name" x="643" y="384" text-anchor="middle">G. parahippocampalis</text>
-            <text class="st-sub" x="643" y="404" text-anchor="middle">zurück zum Start</text>
-            <g class="ms-chip"><rect x="571" y="342" width="144" height="26" rx="13"/><text x="643" y="360" text-anchor="middle">„-Gyros.“</text></g>
+          <g class="loop-st" data-st="parahippo" tabindex="0" role="button" aria-label="Station 6: Gyrus parahippocampalis">
+            <circle class="st-ring" cx="520" cy="486" r="21"/><text x="520" y="493">6</text>
           </g>
         </svg>
-        <div class="papez-controls">
-          <button type="button" class="btn-ghost" id="toggleMerk" aria-pressed="false">Merkworte einblenden</button>
-        </div>
         <div class="papez-detail" id="papezDetail" aria-live="polite">
-          <p><strong>Tippe eine Station an</strong>, um zu sehen, was dort passiert — oder blende die Merkworte ein.</p>
+          <p><strong>Tippe eine Nummer an</strong> — die Schleife erzählt sich Station für Station.</p>
         </div>
       </div>
-      <figcaption class="fig-cap"><strong>Abb. 3</strong> — Der Papez-Kreis. Die Information läuft in <em>einer</em> Richtung: Hippocampus → Fornix → Mamillarkörper → vordere Thalamuskerne → Gyrus cinguli → Gyrus parahippocampalis → und wieder hinein in den Hippocampus.</figcaption>
+      <figcaption class="fig-cap"><span class="fig-no">Tafel V</span> Der Papez-Kreis auf der Anatomie: Hippocampus → Fornix → Corpora mamillaria → Ncll. anteriores thalami → Gyrus cinguli → Gyrus parahippocampalis → zurück in den Hippocampus. Eine Richtung, keine Abkürzung.</figcaption>
     </figure>
 
     <div class="prose">
-      <aside class="marginalia min-f">
+      <aside class="marginalia">
         <span class="tag">Warum obenrum?</span>
-        <p>Der Kreis funktioniert wie eine <strong>Einbahnstraße</strong>: Von den vorderen Thalamuskernen kann die Information nicht einfach denselben Bogen rückwärts nehmen. Also sucht sie sich den Rückweg oben herum — über den Gyrus cinguli, hinten um den Balken, in den Gyrus parahippocampalis und von dort zurück in den Hippocampus.</p>
+        <p>Der Kreis ist eine <strong>Einbahnstraße</strong>: Von den vorderen Thalamuskernen kann die Information nicht denselben Bogen rückwärts nehmen. Also nimmt sie den Weg oben herum — über den Gyrus cinguli, hinten um das Splenium, in den Gyrus parahippocampalis und von dort zurück in den Hippocampus.</p>
       </aside>
 
       <div class="merke">
         <span class="tag tag-merke">Merke</span>
-        <p>Wird der Kreis <em>an irgendeiner Stelle</em> unterbrochen, leidet die Gedächtniskonsolidierung — nicht nur bei Schäden am Hippocampus selbst. Was das praktisch bedeutet, zeigt das nächste Kapitel.</p>
+        <p>Unterbrechung an <em>irgendeiner</em> Stelle des Kreises → Konsolidierungsstörung. Nicht nur der Hippocampus selbst ist kritisch. Was das bedeutet, zeigt der berühmteste Patient der Hirnforschung — nächstes Kapitel.</p>
       </div>
     </div>
 
@@ -488,7 +418,7 @@
       <div class="sg-head">
         <span class="tag tag-game">Übung</span>
         <h3>Bring den Kreis in Ordnung</h3>
-        <p>Tippe die Stationen in der richtigen Reihenfolge an — beginnend beim Hippocampus.</p>
+        <p>Tippe die Etiketten in der richtigen Reihenfolge an — beginnend beim Hippocampus.</p>
       </div>
       <div class="sg-slots" id="sgSlots" aria-live="polite"></div>
       <div class="sg-pool" id="sgPool"></div>
@@ -506,45 +436,75 @@
     <span class="ch-num" aria-hidden="true">05</span>
     <div>
       <h2 class="ch-title">Der Mann, der die Gegenwart verlor</h2>
-      <p class="ch-lede">Patient H.M. — der berühmteste Fall der Hirnforschung.</p>
+      <p class="ch-lede">Patient H.M. — eine Läsion, die das Gedächtnis kartierte.</p>
     </div>
   </header>
 
   <div class="ch-body">
     <div class="prose">
-      <p class="v-b">Henry Molaison — in der Forschung als <strong>Patient H.M.</strong> bekannt — litt an schwerer Epilepsie. In einer Operation entfernten ihm Chirurgen auf <strong>beiden Seiten den Hippocampus</strong>. Die Anfälle wurden tatsächlich viel besser. Aber damals wusste noch niemand, wie wichtig der Hippocampus für das Gedächtnis ist. Die Folge: Von der OP an konnte sich Henry <strong>nichts Neues mehr dauerhaft merken</strong>. Eine Telefonnummer? Zwei Minuten, dann weg. Ein neuer Mensch? Beim nächsten Treffen wieder ein Fremder.</p>
-      <p class="v-f">Henry Molaison („H.M.“) wurde wegen therapieresistenter Epilepsie <strong>beidseits der Hippocampus entfernt</strong>. Der Eingriff half gegen die Anfälle — erzeugte aber eine <strong>anterograde Amnesie</strong>: Ab dem Zeitpunkt der Operation konnte H.M. keine neuen Langzeiterinnerungen mehr bilden, weder Faktenwissen noch Erlebtes. Eine Hirnforscherin, die ihn über Jahrzehnte begleitete, musste sich ihm bei jedem Treffen neu vorstellen — für ihn war es jedes Mal das erste Mal.</p>
-      <p class="v-p">Der Klassiker der Gedächtnisforschung: Bei Henry Molaison wurden zur Epilepsiebehandlung beidseits die <strong>medialen Temporallappen samt Hippocampus</strong> reseziert <span class="latin-note">(1953; ausführlich aufgearbeitet bei Corkin, 2002)</span>. Resultat: eine nahezu reine <strong>anterograde Amnesie für deklarative Inhalte</strong> bei erhaltener Intelligenz und Sprache. H.M. wurde über Jahrzehnte untersucht — unter anderem von <strong>Brenda Milner</strong>, die sich ihm bei jeder Sitzung aufs Neue vorstellen musste.</p>
+      <p class="lead">Der Klassiker der Gedächtnisforschung: Bei <strong>Henry Molaison</strong> („H.M.“) wurden 1953 zur Behandlung einer therapieresistenten Epilepsie beidseits die <strong>medialen Temporallappen samt Hippocampus</strong> reseziert <span class="latin-note">(aufgearbeitet bei Corkin, 2002)</span>. Die Anfälle besserten sich deutlich — doch der Eingriff durchtrennte die Konsolidierungsschleife auf beiden Seiten. Das Ergebnis war eine nahezu reine <strong>anterograde Amnesie für deklarative Inhalte</strong> bei erhaltener Intelligenz und Sprache: Ab dem Tag der Operation konnte H.M. nichts Neues mehr dauerhaft abspeichern. <strong>Brenda Milner</strong>, die ihn über Jahrzehnte untersuchte, musste sich ihm bei jeder Sitzung aufs Neue vorstellen.</p>
+    </div>
 
-      <figure class="figure">
-        <div class="hm-grid" role="table" aria-label="Was H.M. verlor und was ihm blieb">
-          <div class="hm-col hm-lost">
-            <h4>Verloren</h4>
-            <ul>
-              <li><strong>Neue Langzeiterinnerungen</strong> — Fakten, Erlebnisse, Menschen: Nichts nach der OP wurde dauerhaft gespeichert.</li>
-              <li class="min-f">Die <strong>Gedächtniskonsolidierung</strong> — der Weg vom Kurzzeit- ins Langzeitgedächtnis war unterbrochen.</li>
-            </ul>
-          </div>
-          <div class="hm-col hm-kept">
-            <h4>Erhalten</h4>
-            <ul>
-              <li><strong>Kurzzeitgedächtnis</strong> — 30 Sekunden bis 2 Minuten funktionierten weiter (präfrontaler Kortex).</li>
-              <li><strong>Alte Erinnerungen</strong> — was vor der OP gespeichert war, besonders länger Zurückliegendes, blieb abrufbar.</li>
-              <li><strong>Implizites Gedächtnis</strong> — neue <em>Bewegungsabläufe</em> konnte er weiter lernen<span class="min-f">: H.M. hätte noch Fahrradfahren lernen können — sich aber nie daran erinnert, es je geübt zu haben</span>.</li>
-            </ul>
-          </div>
+    <figure class="art-fig art-wide">
+      <img src="assets/fotos.jpg" alt="Gravierte Bildwand: links gerahmte Fotografien voller Erinnerungen, nach rechts hin werden die Rahmen zunehmend leer" width="1400" height="933" loading="lazy">
+      <figcaption><span class="fig-no">Tafel VI</span> H.M.s Gedächtnis als Bildwand: Alles vor der Operation hängt — alles danach bleibt ein leerer Rahmen. Kurzzeitgedächtnis und altes Langzeitgedächtnis intakt, aber kein neues Bild wird mehr aufgehängt.</figcaption>
+    </figure>
+
+    <div class="akte">
+      <div class="akte-tab"><span>Fall H.M.</span><span class="akte-jahr">seit 1953</span></div>
+      <div class="akte-body">
+        <div class="akte-col">
+          <h4 class="verloren">Verloren</h4>
+          <ul>
+            <li><strong>Neue deklarative Langzeiterinnerungen</strong> — Fakten wie Erlebtes: nichts nach der OP wurde dauerhaft gespeichert (anterograde Amnesie).</li>
+            <li>Menschen, die er neu traf, blieben ihm fremd — jede Begegnung war die erste.</li>
+          </ul>
         </div>
-        <figcaption class="fig-cap"><strong>Abb. 4</strong> — Die Läsion trennt sauber: Der Hippocampus wird fürs <em>Neu-Abspeichern</em> gebraucht — nicht fürs Behalten des Alten, nicht fürs Kurzzeitgedächtnis, nicht für Bewegungslernen.</figcaption>
-      </figure>
+        <div class="akte-col">
+          <h4 class="erhalten">Erhalten</h4>
+          <ul>
+            <li><strong>Kurzzeitgedächtnis</strong> — 30 Sekunden bis 2 Minuten trug der präfrontale Kortex weiter.</li>
+            <li><strong>Altes Langzeitgedächtnis</strong> — vor der OP Gespeichertes, besonders länger Zurückliegendes, blieb abrufbar.</li>
+            <li><strong>Implizites Lernen</strong> — neue Bewegungsabläufe gingen weiterhin: Radfahren hätte er lernen können, ohne je zu wissen, dass er es geübt hat.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="akte-fazit">Befund: Der Hippocampus wird fürs <em>Neu-Abspeichern</em> gebraucht — nicht fürs Behalten des Alten, nicht fürs Kurzzeitgedächtnis, nicht für Bewegungslernen.</p>
+    </div>
 
-      <aside class="marginalia min-p">
-        <span class="tag tag-profi">Profi</span>
-        <p><strong>Systematik fürs Testat:</strong> Deklaratives (explizites) Gedächtnis — semantisch (Fakten) und episodisch (Erlebtes) — ist hippocampusabhängig. Non-deklaratives (implizites) Gedächtnis — prozedurale Fertigkeiten wie Radfahren — läuft über andere Systeme und bleibt bei Läsionen des Papez-Kreises erhalten. H.M. ist das Paradebeispiel dieser Dissoziation.</p>
-      </aside>
+    <figure class="figure">
+      <div class="plate plate-mini">
+        <svg viewBox="0 0 900 430" role="img" aria-labelledby="taxTitle">
+          <title id="taxTitle">Landkarte des Langzeitgedächtnisses: deklarativ mit semantisch und episodisch, hippocampusabhängig; non-deklarativ mit prozedural, hippocampusunabhängig</title>
+          <g class="tax-lines" filter="url(#wobble-soft)">
+            <path d="M 450 84 C 400 122 330 152 262 178"/>
+            <path d="M 450 84 C 500 122 570 152 638 178"/>
+            <path d="M 240 240 C 214 266 188 288 165 308"/>
+            <path d="M 272 240 C 296 266 322 288 346 308"/>
+            <path d="M 640 240 C 640 264 640 284 640 304"/>
+          </g>
+          <g class="tax-labels">
+            <text class="tax-root" x="450" y="66" text-anchor="middle">Langzeitgedächtnis</text>
+            <text class="tax-l1 t-ok" x="255" y="205" text-anchor="middle">deklarativ (explizit)</text>
+            <text class="tax-sub t-ok" x="255" y="228" text-anchor="middle">hippocampusabhängig — bei H.M. betroffen</text>
+            <text class="tax-l1 t-frei" x="640" y="205" text-anchor="middle">non-deklarativ (implizit)</text>
+            <text class="tax-sub t-frei" x="640" y="228" text-anchor="middle">hippocampusunabhängig — bei H.M. intakt</text>
+            <text class="tax-l2" x="150" y="340" text-anchor="middle">semantisch</text>
+            <text class="tax-sub" x="150" y="362" text-anchor="middle">Faktenwissen</text>
+            <text class="tax-l2" x="360" y="340" text-anchor="middle">episodisch</text>
+            <text class="tax-sub" x="360" y="362" text-anchor="middle">Erlebtes</text>
+            <text class="tax-l2" x="640" y="340" text-anchor="middle">prozedural</text>
+            <text class="tax-sub" x="640" y="362" text-anchor="middle">Bewegungsabläufe, z. B. Radfahren</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="fig-cap"><span class="fig-no">Tafel VII</span> Die Dissoziation, die H.M. bewies: Nur der <em>deklarative</em> Ast hängt am Hippocampus und am Papez-Kreis. Der prozedurale Ast läuft über andere Systeme — deshalb konnte H.M. weiter Neues <em>können</em>, aber nichts Neues <em>wissen</em>.</figcaption>
+    </figure>
 
+    <div class="prose">
       <div class="merke">
         <span class="tag tag-merke">Merke</span>
-        <p>H.M. beweist beides: <strong>Ohne Hippocampus keine neuen deklarativen Erinnerungen</strong> — und: Das Langzeitgedächtnis selbst liegt woanders, sonst wären auch die alten Erinnerungen verschwunden.</p>
+        <p>H.M. beweist beides zugleich: <strong>Ohne Hippocampus keine neuen deklarativen Erinnerungen</strong> — und: Der Langzeitspeicher liegt woanders, sonst wären auch die alten Erinnerungen fort gewesen.</p>
       </div>
     </div>
   </div>
@@ -556,7 +516,7 @@
     <span class="ch-num" aria-hidden="true">06</span>
     <div>
       <h2 class="ch-title">Funktion II — Angst, Wut &amp; die Amygdala</h2>
-      <p class="ch-lede">Der Mandelkern scannt die Welt nach Gefahr — und drückt notfalls den Alarmknopf.</p>
+      <p class="ch-lede">Der Bedrohungsscanner und seine Alarmanlage im Körper.</p>
     </div>
   </header>
 
@@ -564,61 +524,54 @@
     <div class="prose">
       <div class="mythbox">
         <span class="tag tag-myth">Mythos-Check</span>
-        <p><strong>„Das limbische System ist unser Emotionszentrum.“</strong> So stand es früher in den Büchern: unten das chaotische Gefühlshirn, obendrüber der vernünftige Kortex. Heute weiß man: So klar lässt sich das nicht trennen. An Emotionen sind viele Hirnregionen <span class="min-f">und sogar große Teile des Körpers</span> beteiligt. Das limbische System bleibt wichtig für Emotionen — aber nicht exklusiv. Eine Struktur sticht dabei heraus: die Amygdala.</p>
+        <p><strong>„Das limbische System ist unser Emotionszentrum.“</strong> So stand es früher in den Büchern: unten das chaotische Gefühlshirn, obendrüber der vernünftige Kortex. Heute weiß man: So klar trennt sich das nicht — an Emotionen sind viele Hirnregionen und sogar große Teile des Körpers beteiligt. Das limbische System bleibt wichtig, aber nicht exklusiv. Eine Struktur sticht heraus: die Amygdala, spezialisiert auf <strong>negative Emotionen</strong> — allen voran Angst und Wut.</p>
       </div>
 
-      <p class="v-b">Die Amygdala bekommt ständig Meldungen von allem, was du <strong>siehst, hörst und riechst</strong> — und durchsucht diesen Strom pausenlos nach einer Frage: <em>Ist da etwas Gefährliches?</em> Meldet sie „Schlange!“, fährt sie deinen Körper in Sekundenbruchteilen hoch: Herz schneller, Muskeln durchblutet, hellwach — bereit zum Wegrennen.</p>
-      <p class="v-f">Die Amygdala ist auf <strong>negative Emotionen</strong> spezialisiert, vor allem <strong>Angst und Wut</strong>. Damit die Angstreaktion schnell kommt, erhält sie direkte Zuflüsse aus allen sinnesverarbeitenden Rindenfeldern und scannt sie permanent auf Bedrohliches. Im Ernstfall aktiviert sie den <strong>Hypothalamus</strong> — die Steuerzentrale des vegetativen Nervensystems und Brücke zwischen Gehirn und Körper.</p>
-      <p class="v-p">Bedrohungsdetektion als Reflexbogen: Sensorische Assoziationsareale → Amygdala → über die <strong>Stria terminalis</strong> (ein bogenförmiger Umweg, ähnlich dem Fornix, aber ohne weitere Umschaltung) → <strong>Hypothalamus</strong>. Dieser antwortet zweigleisig: neuronal über den <strong>Sympathikus</strong> (Fight-or-Flight) und endokrin über die <strong>Hypophyse</strong> mit nachgeschalteter <strong>Nebennieren</strong>-Ausschüttung von <strong>Adrenalin und Cortisol</strong>.</p>
+      <p class="lead">Damit die Angstreaktion schnell kommt, erhält die Amygdala direkte Zuflüsse aus <strong>allen sinnesverarbeitenden Rindenfeldern</strong> — Sehen, Hören, Riechen — und durchforstet diesen Strom pausenlos nach einer einzigen Frage: <em>Ist da etwas Gefährliches?</em></p>
+    </div>
 
-      <figure class="figure">
-        <div class="cascade" role="img" aria-label="Angstkaskade: Sinneseindrücke, Amygdala, Stria terminalis, Hypothalamus, dann Sympathikus und Hormonweg, dann Alarmzustand des Körpers">
-          <div class="c-step">
-            <span class="c-tag">Eingang</span>
-            <strong>Sehen · Hören · Riechen</strong>
-            <span class="c-note">alle Sinnesareale melden direkt</span>
-          </div>
-          <div class="c-link" aria-hidden="true"></div>
-          <div class="c-step c-amy">
-            <span class="c-tag">Bedrohungsscanner</span>
-            <strong>Amygdala</strong>
-            <span class="c-note">„Ist da etwas Gefährliches?“</span>
-          </div>
-          <div class="c-link c-link-labeled" aria-hidden="true"><span class="min-f">Stria terminalis — direkt, ohne Umschaltung</span></div>
-          <div class="c-step">
-            <span class="c-tag">Schaltzentrale</span>
-            <strong>Hypothalamus</strong>
-            <span class="c-note">Chef des vegetativen Nervensystems — Brücke zwischen Gehirn und Körper</span>
-          </div>
-          <div class="c-split" aria-hidden="true"></div>
-          <div class="c-branches">
-            <div class="c-step c-branch">
-              <span class="c-tag">neuronal · schnell</span>
-              <strong>Sympathikus</strong>
-              <span class="c-note">Fight or Flight</span>
-            </div>
-            <div class="c-step c-branch">
-              <span class="c-tag">hormonell</span>
-              <strong>Hypophyse → Nebenniere</strong>
-              <span class="c-note">Adrenalin &amp; Cortisol</span>
-            </div>
-          </div>
-          <div class="c-merge" aria-hidden="true"></div>
-          <div class="c-results">
-            <span>❤ Herz schlägt schneller</span>
-            <span>💪 Muskeln durchblutet</span>
-            <span>👁 hellwach &amp; fokussiert</span>
-          </div>
+    <figure class="art-fig art-wide">
+      <img src="assets/wald.jpg" alt="Gravierter dämmriger Waldweg, auf dem Pfad ein aufgerichteter schlangenförmiger Umriss" width="1400" height="933" loading="lazy">
+      <figcaption><span class="fig-no">Tafel VIII</span> Stock oder Schlange? Die Amygdala entscheidet zuerst — und fragt später. Evolutionär die richtige Reihenfolge: Lieber dreimal vor einem Stock erschrecken, als einmal eine echte Schlange übersehen. Für die Gegenwart wirkt sie damit gelegentlich übervorsichtig.</figcaption>
+    </figure>
+
+    <div class="split alarm-split">
+      <figure class="art-fig alarm-fig">
+        <div class="fig-stack">
+          <img src="assets/alarmfigur.jpg" alt="Antike anatomische Wandtafel: menschliche Figur im Profil mit Gehirn, Rückenmark, Nervenbahnen, Herz und Nieren mit Nebennieren" width="1100" height="1467" loading="lazy">
+          <svg class="fig-overlay" viewBox="0 0 300 400" aria-hidden="true">
+            <g class="ov-dot"><circle cx="196" cy="50" r="12"/><text x="196" y="54.5">1</text></g>
+            <g class="ov-dot"><circle cx="180" cy="42" r="12"/><text x="180" y="46.5">2</text></g>
+            <g class="ov-dot"><circle cx="154" cy="60" r="12"/><text x="154" y="64.5">3</text></g>
+            <g class="ov-dot"><circle cx="124" cy="145" r="12"/><text x="124" y="149.5">4</text></g>
+            <g class="ov-dot"><circle cx="162" cy="167" r="12"/><text x="162" y="171.5">5</text></g>
+            <g class="ov-dot"><circle cx="170" cy="228" r="12"/><text x="170" y="232.5">6</text></g>
+          </svg>
         </div>
-        <figcaption class="fig-cap"><strong>Abb. 5</strong> — Die Angstkaskade: von der Wahrnehmung zum alarmbereiten Körper in Sekundenbruchteilen.</figcaption>
+        <figcaption><span class="fig-no">Tafel IX</span> Die Alarmanlage des Körpers.</figcaption>
       </figure>
+      <div class="prose alarm-steps">
+        <h3 class="steps-title">Die Alarmkette</h3>
+        <ol class="steps">
+          <li><b>Sinneseindruck.</b> Alle sensorischen Rindenfelder melden direkt an die Amygdala — ohne Umweg über bewusstes Nachdenken.</li>
+          <li><b>Amygdala schlägt an.</b> Mustererkennung auf Bedrohung: „Schlange!“</li>
+          <li><b>Hypothalamus wird gezündet</b> — über die <strong>Stria terminalis</strong>, einen bogenförmigen Umweg ähnlich dem Fornix, aber ohne weitere Umschaltung. Der Hypothalamus ist die Steuerzentrale des vegetativen Nervensystems, die Brücke zwischen Gehirn und Körper.</li>
+          <li><b>Sympathikus feuert</b> (neuronal, schnell): Fight-or-Flight über den Grenzstrang entlang der Wirbelsäule.</li>
+          <li><b>Herz &amp; Muskeln fahren hoch</b> — Herzfrequenz steigt, Muskulatur wird durchblutet, Aufmerksamkeit schärft sich.</li>
+          <li><b>Hormonweg parallel:</b> Hypophyse → <strong>Nebennieren</strong> (auf den Nieren sitzend) schütten <strong>Adrenalin und Cortisol</strong> aus — der Alarm bleibt bestehen.</li>
+        </ol>
+      </div>
+    </div>
 
-      <p class="v-b">Warum reagiert die Amygdala so übertrieben schnell — auch mal auf einen harmlosen Stock? Weil das evolutionär die bessere Strategie war: <strong>Lieber dreimal vor einem Stock erschrecken, als einmal eine echte Schlange übersehen.</strong> Für unsere Vorfahren war das überlebenswichtig; heute wirkt die Amygdala dadurch manchmal etwas übervorsichtig.</p>
-      <p class="min-f">Ganz verteufeln sollte man sie trotzdem nicht: Es gibt eine sehr seltene Erbkrankheit, bei der die Amygdala <strong>auf beiden Seiten verkalkt</strong><span class="min-p latin-note"> (Urbach-Wiethe-Syndrom)</span>. Betroffene kennen praktisch <strong>keine Angst</strong> — was zunächst verlockend klingt, aber doppelt problematisch ist: Es ist objektiv gefährlich, und weil die Amygdala noch weitere Aufgaben hat, sind auch Gefühlsleben und Sozialverhalten deutlich eingeschränkt. Ohne Amygdala geht es also nicht — ein bisschen mehr Gelassenheit dürfte sie trotzdem oft haben.</p>
+    <div class="prose">
+      <aside class="marginalia m-profi">
+        <span class="tag tag-profi">Klinik</span>
+        <p><strong>Urbach-Wiethe-Syndrom:</strong> Bei dieser sehr seltenen Erbkrankheit verkalkt die Amygdala beidseits. Betroffene kennen praktisch <strong>keine Angst</strong> — was doppelt problematisch ist: objektiv gefährlich, und weil die Amygdala weitere Aufgaben trägt, sind auch Gefühlsleben und Sozialverhalten deutlich eingeschränkt. Ganz ohne Mandelkern geht es also nicht — nur etwas gelassener dürfte er oft sein.</p>
+      </aside>
 
-      <div class="bridge min-f">
+      <div class="bridge">
         <span class="tag">Die dritte Verschaltung</span>
-        <p><strong>Emotion × Gedächtnis:</strong> Schon mal aufgefallen, dass du dir emotionale Ereignisse viel besser merkst als neutrale? Das liegt an einer <strong>direkten Verbindung zwischen Amygdala und Hippocampus</strong> — praktischerweise sind sie direkte Nachbarn. Löst ein Ereignis starke Emotionen aus, sorgt die Amygdala dafür, dass es besonders fest konsolidiert wird. Evolutionär sinnvoll: Wer den Säbelzahntiger einmal gesehen hat, soll ihn beim nächsten Mal schon am Schatten erkennen.</p>
+        <p><strong>Emotion × Gedächtnis:</strong> Emotionale Ereignisse bleiben besser hängen als neutrale — dank einer <strong>direkten Verbindung der Amygdala zum Hippocampus</strong>, ihrem unmittelbaren Nachbarn. Löst ein Ereignis starke Emotionen aus, wird es besonders fest konsolidiert. Evolutionär sinnvoll: Wer den Säbelzahntiger einmal gesehen hat, erkennt ihn beim nächsten Mal schon am Schatten.</p>
       </div>
     </div>
   </div>
@@ -635,7 +588,7 @@
   </header>
   <div class="ch-body">
     <div class="prose">
-      <p>Gedächtniskonsolidierung und Emotionen sind die zwei Funktionen, die man sicher wissen muss. Daneben ist das limbische System an weiteren Dingen <em>beteiligt</em> — etwa an <strong>Antrieb</strong>, <strong>Sexualverhalten</strong> und <strong>Essverhalten</strong>. Hier wird die Forschungslage aber schnell unscharf: Was genau das limbische System beiträgt und wo andere Systeme übernehmen, ist noch nicht abschließend geklärt. <span class="min-f">Für Prüfungen gilt: Die Kernaussagen sind Gedächtnis und Emotion — der Rest ist „beteiligt an“, nicht „zuständig für“.</span></p>
+      <p>Gedächtniskonsolidierung und Emotion sind die zwei Funktionen, die sitzen müssen. Daneben ist das limbische System an <strong>Antrieb</strong>, <strong>Sexual-</strong> und <strong>Essverhalten</strong> beteiligt — hier wird die Forschungslage aber schnell unscharf. Für Prüfungen gilt: Die Kernaussagen sind Gedächtnis und Emotion; der Rest ist „beteiligt an“, nicht „zuständig für“.</p>
     </div>
   </div>
 </section>
@@ -645,45 +598,82 @@
   <header class="ch-head">
     <span class="ch-num" aria-hidden="true">08</span>
     <div>
-      <h2 class="ch-title">Profi-Tipp — Orientierung im Gehirnschnitt</h2>
-      <p class="ch-lede">Wie du die verstreuten Strukturen in jedem Schnittbild wiederfindest.</p>
+      <h2 class="ch-title">Orientierung im Gehirnschnitt</h2>
+      <p class="ch-lede">Der Präparier-Trick: erst die Ventrikel, dann alles andere.</p>
     </div>
   </header>
   <div class="ch-body">
     <div class="prose">
-      <p class="lvl-teaser v-b">Dieses Kapitel ist etwas für Fortgeschrittene und Profis — es zeigt einen Präparier- und Klausur-Trick für Schnittbilder. <button type="button" class="linklike" data-set-level="fortgeschritten">Stufe wechseln und lesen →</button></p>
+      <p class="lead">Die limbischen Strukturen liegen scheinbar überall — aber es gibt eine zuverlässige <strong>Landmarke: die Seitenventrikel</strong>. Ihr charakteristischer C-Bogen (eine Folge der C-förmigen Rotation des wachsenden Großhirns) wird von gleich drei limbischen Bahnen begleitet.</p>
+    </div>
 
-      <div class="min-f">
-        <p>Die limbischen Strukturen liegen scheinbar überall verteilt — aber es gibt eine zuverlässige <strong>Landmarke: die Seitenventrikel</strong>. Sie machen im Gehirn einen charakteristischen Bogen, und genau diesem Bogen folgen mehrere limbische Strukturen:</p>
-        <ul class="tick-list">
-          <li>Der <strong>Hippocampus</strong> zieht direkt <em>unter</em> dem Bogen des Seitenventrikels mit (im Unterhorn).</li>
-          <li>Der <strong>Fornix</strong> begleitet den Bogen unter dem Balken.</li>
-          <li class="min-p">Die <strong>Stria terminalis</strong> läuft mit dem Seitenventrikel bzw. — noch enger — mit dem <strong>Nucleus caudatus</strong> der Basalganglien nach vorn.</li>
-        </ul>
-        <div class="merke">
-          <span class="tag tag-merke">Workflow</span>
-          <p>Egal ob Präparat, Zeichnung oder MRT-Schnitt: <strong>1.</strong> Zuerst die Seitenventrikel suchen. <strong>2.</strong> Ihrem Bogen folgen. <strong>3.</strong> Daran Hippocampus, Fornix <span class="min-p">und Stria terminalis</span> zuordnen. Die Ventrikel sind fast immer leicht zu erkennen — und führen dich direkt zu den versteckten limbischen Strukturen.</p>
-        </div>
-        <p class="min-p sidefact">Warum Ventrikel, Hippocampus &amp; Co. überhaupt so seltsam gebogen sind, erklärt die Hirnentwicklung: Das wachsende Großhirn rotiert seine Strukturen C-förmig — deshalb der große „Umweg“. (Im Quellvideo gibt es dazu einen eigenen Beitrag über das Ventrikelsystem.)</p>
+    <figure class="figure">
+      <div class="plate plate-mini">
+        <svg viewBox="0 0 950 600" role="img" aria-labelledby="ventTitle">
+          <title id="ventTitle">Landmarke Seitenventrikel: der C-Bogen des Ventrikels, begleitet von Nucleus caudatus, Fornix, Hippocampus und Stria terminalis</title>
+          <g filter="url(#wobble)">
+            <path class="pl-cortex ghosted" d="M 100 320 C 92 235 138 145 240 96 C 330 54 460 44 570 62 C 690 82 780 145 812 236 C 832 296 828 350 806 394 C 794 417 778 432 758 440 L 706 455 C 688 461 676 472 668 489 C 654 519 620 538 578 534 L 500 525 C 452 519 410 502 380 478 L 330 489 C 240 504 152 472 118 400 C 104 372 102 350 100 320 Z"/>
+            <!-- Seitenventrikel: großer C-Bogen -->
+            <path class="vent-band" d="M 300 250
+              C 320 190 420 160 520 178
+              C 620 196 690 250 700 320
+              C 708 382 670 440 600 468
+              L 585 440
+              C 640 416 670 372 664 322
+              C 656 266 600 224 516 210
+              C 430 196 344 220 330 268 Z"/>
+            <!-- Unterhorn -->
+            <path class="vent-band" d="M 600 468 C 560 486 500 494 450 486 L 456 458 C 498 464 548 458 585 440 Z"/>
+            <!-- Nucleus caudatus: folgt dem Ventrikel oben/außen -->
+            <path class="caud-band" d="M 316 232 C 340 190 430 168 520 184 C 600 198 660 240 676 292 L 646 300 C 630 258 578 226 512 214 C 436 200 360 218 342 252 Z"/>
+            <!-- Fornix: unter dem Balkenbogen, innerhalb -->
+            <path class="forn-line" d="M 620 300 C 560 322 480 330 420 322 C 396 318 382 326 374 344"/>
+            <!-- Hippocampus im Boden des Unterhorns -->
+            <path class="hipp-band" d="M 640 380 C 620 428 570 462 510 474 C 486 478 468 476 456 468 L 464 444 C 476 450 492 452 510 448 C 558 438 598 410 614 368 Z"/>
+            <!-- Stria terminalis: läuft mit Ventrikel/Caudatus -->
+            <path class="stria-line" d="M 452 452 C 560 440 650 380 664 308 C 672 262 640 224 580 206"/>
+          </g>
+          <g class="pl-labels">
+            <g class="pl-label-passive-strong"><path d="M 500 186 L 500 120 L 560 120"/><text x="566" y="124">Seitenventrikel</text><text class="sub" x="566" y="146">die Landmarke — zuerst suchen</text></g>
+            <g class="pl-label-passive-strong"><path d="M 400 224 L 330 130 L 250 130"/><text x="112" y="134">Ncl. caudatus</text><text class="sub" x="82" y="156">läuft außen mit</text></g>
+            <g class="pl-label-passive-strong"><path d="M 420 322 L 330 350 L 240 350"/><text x="122" y="354">Fornix</text><text class="sub" x="92" y="376">unter dem Balken</text></g>
+            <g class="pl-label-passive-strong"><path d="M 560 452 L 560 540 L 610 540"/><text x="616" y="544">Hippocampus</text><text class="sub" x="616" y="566">im Boden des Unterhorns</text></g>
+            <g class="pl-label-passive-strong"><path d="M 620 400 L 760 430 L 800 430"/><text x="806" y="434">Stria</text><text class="sub" x="806" y="456">terminalis</text></g>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="fig-cap"><span class="fig-no">Tafel X</span> Die Landmarke: Dem C-Bogen der Seitenventrikel folgen der <strong>Hippocampus</strong> (im Boden des Unterhorns), der <strong>Fornix</strong> (unter dem Balken) und die <strong>Stria terminalis</strong> (mit dem Ncl. caudatus der Basalganglien). Schema — Proportionen zugunsten der Lesbarkeit vereinfacht.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <div class="merke">
+        <span class="tag tag-merke">Workflow</span>
+        <p>Egal ob Präparat, Zeichnung oder MRT-Schnitt: <strong>1.</strong> Seitenventrikel suchen — sie sind fast immer leicht zu erkennen. <strong>2.</strong> Ihrem Bogen folgen. <strong>3.</strong> Daran Hippocampus, Fornix und Stria terminalis zuordnen.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 09 QUIZ ============ -->
+<!-- ============ 09 TESTAT ============ -->
 <section class="chapter" id="quiz">
   <header class="ch-head">
     <span class="ch-num" aria-hidden="true">09</span>
     <div>
-      <h2 class="ch-title">Wissens-Check</h2>
-      <p class="ch-lede">Fragen auf deiner Stufe — <span id="quizLevelLabel">Basis</span>. Stufe wechseln = neue Fragen.</p>
+      <h2 class="ch-title">Das Testat</h2>
+      <p class="ch-lede">Zehn Fragen auf Prüfungsniveau. Der Merkspruch trägt dich durch die Hälfte.</p>
     </div>
   </header>
   <div class="ch-body">
-    <div class="quiz" id="quizRoot"></div>
-    <div class="quiz-foot">
-      <p class="score" id="quizScore" aria-live="polite"></p>
-      <button type="button" class="btn-ghost" id="quizReset">Quiz zurücksetzen</button>
+    <div class="exam">
+      <div class="exam-head">
+        <span>Neuroanatomie · Limbisches System</span>
+        <span class="exam-meta">10 Fragen · keine Zeitbegrenzung</span>
+      </div>
+      <div class="quiz" id="quizRoot"></div>
+      <div class="quiz-foot">
+        <p class="score" id="quizScore" aria-live="polite"></p>
+        <button type="button" class="btn-ghost" id="quizReset">Testat wiederholen</button>
+      </div>
     </div>
   </div>
 </section>
@@ -693,39 +683,73 @@
   <header class="ch-head">
     <span class="ch-num" aria-hidden="true">10</span>
     <div>
-      <h2 class="ch-title">Auf einen Blick</h2>
-      <p class="ch-lede">Alles Wichtige — in einem Durchgang.</p>
+      <h2 class="ch-title">Die große Tafel</h2>
+      <p class="ch-lede">Alles Wichtige — in einem Bild.</p>
     </div>
   </header>
   <div class="ch-body">
-    <div class="summary-grid">
-      <div class="sum-card">
-        <span class="tag">Die Schleife</span>
-        <p>„<strong>Hipster fordern Mamas antiken Doppel-Gyros</strong>“ — Hippocampus → Fornix → Mamillarkörper → vordere Thalamuskerne → Gyrus cinguli → Gyrus parahippocampalis → zurück zum Hippocampus. Dazu als siebte Struktur: die <strong>Amygdala</strong>.</p>
+    <figure class="figure">
+      <div class="plate" id="masterPlate">
+        <svg viewBox="0 0 950 660" role="img" aria-labelledby="masterTitle">
+          <title id="masterTitle">Gesamtschau: Papez-Kreis, Stria terminalis zur Angstreaktion und Amygdala-Hippocampus-Brücke in einer Tafel</title>
+          <g class="ghost" filter="url(#wobble)">
+            <path class="pl-cortex" d="M 100 340 C 92 250 138 152 240 100 C 330 56 460 46 570 64 C 690 84 780 150 812 244 C 832 306 828 362 806 408 C 794 432 778 448 758 456 L 706 472 C 688 478 676 490 668 508 C 654 540 620 560 578 556 L 500 546 C 452 540 410 522 380 496 L 330 508 C 240 524 152 490 118 414 C 104 384 102 362 100 340 Z"/>
+            <path class="pl-s s-cinguli" d="M 300 302 C 293 235 352 180 454 170 C 562 160 642 196 664 250 C 673 272 675 290 672 304 L 620 298 C 622 286 620 272 612 258 C 590 220 530 199 450 207 C 370 215 325 250 330 300 Z"/>
+            <path class="pl-cc" d="M 330 300 C 325 250 370 215 450 207 C 530 199 590 220 612 258 C 620 272 622 286 620 298 L 585 294 C 587 272 568 250 518 240 C 450 227 385 245 368 278 C 362 290 361 295 362 300 Z"/>
+            <path class="pl-s s-fornix" d="M 602 306 C 558 328 498 338 452 336 C 428 335 417 342 410 358 L 403 380 L 382 372 L 391 346 C 400 324 424 316 452 318 C 496 320 552 312 592 290 Z"/>
+            <ellipse class="pl-s s-thalamus" cx="500" cy="352" rx="58" ry="34"/>
+            <ellipse class="pl-s s-thalamus-ant" cx="452" cy="336" rx="20" ry="14"/>
+            <path class="pl-hypo" d="M 412 386 C 420 374 436 370 452 374 C 458 386 457 398 449 408 C 434 412 420 402 412 386 Z"/>
+            <circle class="pl-s s-mamillaria" cx="414" cy="414" r="10"/>
+            <path class="pl-stem" d="M 476 420 C 496 432 510 452 516 478 L 532 600 C 536 626 522 644 498 646 C 474 648 458 634 454 610 L 444 492 C 441 460 452 434 476 420 Z"/>
+            <path class="pl-s s-parahippo" d="M 560 470 C 536 496 502 514 462 518 C 442 520 426 516 414 508 L 424 486 C 434 492 448 495 462 493 C 494 489 522 474 540 452 Z"/>
+            <path class="pl-s s-hippocampus" d="M 614 348 C 602 398 562 440 506 458 C 488 464 473 464 461 458 C 466 442 480 431 500 424 C 546 408 578 380 590 340 Z"/>
+            <ellipse class="pl-s s-amygdala" cx="443" cy="446" rx="16" ry="12" transform="rotate(-16 443 446)"/>
+          </g>
+          <!-- Papez-Schleife, dezent -->
+          <g class="loop loop-thin">
+            <path class="loop-path" d="M 585 418 C 606 392 615 366 608 344 C 580 328 528 322 480 324 C 462 325 450 330 442 340 C 428 356 418 378 414 396" marker-end="url(#arrowHead)"/>
+            <path class="loop-path" d="M 414 396 C 424 370 434 350 448 338 C 448 302 438 266 432 232 C 474 200 558 196 626 238 C 652 256 662 280 658 304" marker-end="url(#arrowHead)"/>
+            <path class="loop-path" d="M 658 304 C 652 344 630 390 596 428 C 570 458 542 476 514 484 C 498 488 484 486 472 478" marker-end="url(#arrowHead)"/>
+          </g>
+          <!-- Stria terminalis: Amygdala → Hypothalamus, Bogen um den Thalamus -->
+          <path class="master-stria" d="M 452 434
+            C 490 414 518 386 526 350
+            C 534 314 520 284 490 270
+            C 462 258 436 266 420 288
+            C 408 306 404 330 406 354
+            C 407 370 409 382 411 392" marker-end="url(#arrowHead)"/>
+          <!-- Amygdala ↔ Hippocampus -->
+          <path class="master-amyhipp" d="M 448 466 C 468 480 498 478 522 458" marker-end="url(#arrowHead)" marker-start="url(#arrowHead)"/>
+          <g class="pl-labels">
+            <g class="pl-label-passive-strong"><path d="M 540 182 L 580 122 L 636 122"/><text x="642" y="108">① Papez-Kreis</text><text class="sub" x="642" y="130">Konsolidierung: „Hipster fordern</text><text class="sub" x="642" y="148">Mamas antiken Doppel-Gyros.“</text></g>
+            <g class="pl-label-passive-strong"><path d="M 500 276 L 420 210 L 330 210"/><text x="314" y="152" text-anchor="end">② Stria terminalis</text><text class="sub" x="314" y="174" text-anchor="end">Amygdala → Hypothalamus:</text><text class="sub" x="314" y="192" text-anchor="end">Sympathikus + Adrenalin/Cortisol</text></g>
+            <g class="pl-label-passive-strong"><path d="M 470 462 L 404 584 L 334 584"/><text x="328" y="570" text-anchor="end">③ Amygdala ↔ Hippocampus</text><text class="sub" x="328" y="592" text-anchor="end">Emotionale Ereignisse werden</text><text class="sub" x="328" y="610" text-anchor="end">stärker konsolidiert</text></g>
+          </g>
+        </svg>
       </div>
-      <div class="sum-card">
-        <span class="tag">Funktion I</span>
-        <p><strong>Gedächtniskonsolidierung:</strong> Kurzzeitgedächtnis (präfrontaler Kortex, ~30 s–2 min) wird über die limbische Schleife ins verteilte Langzeitgedächtnis überführt. Unterbrechung an beliebiger Stelle → keine neuen deklarativen Erinnerungen (Patient H.M.).</p>
-      </div>
-      <div class="sum-card">
-        <span class="tag">Funktion II</span>
-        <p><strong>Emotionen:</strong> Die Amygdala scannt alle Sinneseindrücke auf Gefahr und alarmiert über die <span class="min-f">Stria terminalis den</span> Hypothalamus → Sympathikus + <span class="min-f">Hypophyse/Nebenniere →</span> Adrenalin &amp; Cortisol. Und: Emotionale Ereignisse werden dank Amygdala-Hippocampus-Draht besser gespeichert.</p>
-      </div>
-      <div class="sum-card min-p">
-        <span class="tag tag-profi">Profi-Extras</span>
-        <p>LTP als Konsolidierungsmechanismus · deklarativ vs. implizit (H.M.!) · Urbach-Wiethe: beidseitige Amygdala-Verkalkung → Furchtlosigkeit · Orientierung im Schnitt über die Seitenventrikel · Broca prägte den „Limbus“, Papez den Kreis.</p>
-      </div>
+      <figcaption class="fig-cap"><span class="fig-no">Tafel XI</span> Die drei Verschaltungen, die sitzen müssen: ① die Gedächtnisschleife des Papez-Kreises, ② der Alarmweg der Amygdala über die Stria terminalis zum Hypothalamus, ③ die Brücke zwischen Emotion und Gedächtnis.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <ol class="recap">
+        <li><strong>System:</strong> funktionell definiertes, verteiltes Netzwerk („Limbus“ = Saum, Broca); Kernfunktionen Gedächtniskonsolidierung + Emotion.</li>
+        <li><strong>Schleife:</strong> Hippocampus → Fornix → Corpora mamillaria → Ncll. anteriores thalami → Gyrus cinguli → Gyrus parahippocampalis → Hippocampus. Mechanismus: Langzeitpotenzierung.</li>
+        <li><strong>Klinik:</strong> Unterbrechung an beliebiger Stelle → anterograde Amnesie für deklarative Inhalte (Patient H.M., 1953); implizites Lernen bleibt.</li>
+        <li><strong>Amygdala:</strong> Bedrohungsscanner; Stria terminalis → Hypothalamus → Sympathikus + Hypophyse/Nebenniere (Adrenalin, Cortisol); Urbach-Wiethe = Furchtlosigkeit; Nachbarschafts-Draht zum Hippocampus verstärkt emotionale Erinnerungen.</li>
+        <li><strong>Orientierung:</strong> Seitenventrikel finden → Bogen folgen → Hippocampus, Fornix, Stria terminalis zuordnen.</li>
+      </ol>
     </div>
 
     <div class="sources">
       <h3>Quelle &amp; Vertiefung</h3>
-      <p class="src-video">Diese Lerneinheit basiert auf dem Video <a href="https://www.youtube.com/watch?v=vIXBW-a9BWY" target="_blank" rel="noopener">„Das Limbische System: Aufbau und Funktion verstehen“</a> vom Kanal <strong>Neurologie mit Dr. Janis</strong> — sehr sehenswert, inklusive 3D-Modell und Zeichnungen. Der Merkspruch stammt aus dem Video.</p>
+      <p class="src-video">Diese Lerneinheit basiert auf dem Video <a href="https://www.youtube.com/watch?v=vIXBW-a9BWY" target="_blank" rel="noopener">„Das Limbische System: Aufbau und Funktion verstehen“</a> vom Kanal <strong>Neurologie mit Dr. Janis</strong> — sehr sehenswert, inklusive 3D-Modell. Der Merkspruch stammt aus dem Video.</p>
       <ul>
         <li>Trepel, M.: <em>Neuroanatomie — Struktur und Funktion</em>, 8. Auflage, 2021</li>
         <li><a href="https://www.dasgehirn.info/grundlagen/anatomie/das-limbische-system" target="_blank" rel="noopener">dasGehirn.info — Das limbische System</a></li>
         <li>Corkin, S.: <em>What's new with the amnesic patient H.M.?</em> Nature Reviews Neuroscience, 2002</li>
       </ul>
-      <p class="disclaimer">Hinweis: Diese Seite ist ein Lernprojekt und keine medizinische Beratung. Bei medizinischen Fragen wende dich bitte an Ärztinnen und Ärzte.</p>
+      <p class="disclaimer">Schautafeln I, III–V, VII, X und XI sind didaktische Schemata — Proportionen zugunsten der Lesbarkeit vereinfacht. Diese Seite ist ein Lernprojekt und keine medizinische Beratung.</p>
     </div>
   </div>
 </section>
@@ -733,8 +757,8 @@
 </main>
 
 <footer class="site-foot">
-  <p><span class="brand-mark" aria-hidden="true">§</span> Limbik·Atlas — eine interaktive Lerneinheit zum limbischen System.</p>
-  <p class="foot-small">Inhalt nach dem Video von <a href="https://www.youtube.com/watch?v=vIXBW-a9BWY" target="_blank" rel="noopener">Neurologie mit Dr. Janis</a> · Gebaut als Open-Source-Lernprojekt · Keine medizinische Beratung.</p>
+  <p><span class="brand-mark" aria-hidden="true">§</span> Limbik·Atlas — ein illustrierter Lernatlas zum limbischen System.</p>
+  <p class="foot-small">Inhalt nach dem Video von <a href="https://www.youtube.com/watch?v=vIXBW-a9BWY" target="_blank" rel="noopener">Neurologie mit Dr. Janis</a> · Illustrationen: eigene Schemata &amp; KI-gestützte Gravuren (Higgsfield) · Open-Source-Lernprojekt · Keine medizinische Beratung.</p>
 </footer>
 
 <script src="js/app.js"></script>

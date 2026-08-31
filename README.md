@@ -1,24 +1,36 @@
 # Limbik·Atlas — Das limbische System verstehen
 
-Eine interaktive Lern-Website zum limbischen System, im Stil eines anatomischen Atlas.
-Drei umschaltbare Lernstufen decken alles von „noch nie gehört" bis Klausurniveau ab.
+Ein illustrierter Lernatlas zum limbischen System auf Prüfungsniveau —
+gestaltet wie ein anatomisches Tafelwerk: elf Bildtafeln, ein Merkspruch, ein Testat.
 
-## Features
+**Live:** <https://limbisches-system.vercel.app>
 
-- **Drei Lernstufen** (Basis / Fortgeschritten / Profi) — jederzeit umschaltbar, der gesamte
-  Inhalt passt sich an; die Wahl wird im Browser gespeichert
-- **Interaktive Schautafel** der sieben Kernstrukturen (stilisierte Mediansicht, SVG)
-- **Papez-Kreis als anklickbare Schleife** mit animiertem Informationsfluss und
-  einblendbaren Merkworten
-- **Merkspruch** „Hipster fordern Mamas antiken Doppel-Gyros" mit Sortierspiel
-- **Fallstudie Patient H.M.** (Henry Molaison)
-- **Angstkaskade der Amygdala** als Flussdiagramm
-- **Stufenabhängiges Quiz** (je 6–7 Fragen pro Stufe, mit Erklärungen)
-- Kein Framework, kein Build-Schritt — reines HTML/CSS/JS
+## Konzept
+
+Wo immer möglich wird bildlich erklärt statt in Textkästen:
+
+| Tafel | Inhalt | Technik |
+|-------|--------|---------|
+| I | Übersichtstafel aller 7 Strukturen (interaktiv) | SVG, handgezeichneter Look |
+| II | „Seepferdchen" — der Namensgeber des Hippocampus | KI-Gravur |
+| III | Der Weg einer Erinnerung (KZG → Konsolidierung → LZG) | SVG auf Hirnsilhouette |
+| IV a/b | Biskuitrolle ↔ Hippocampus-Querschnitt (Cornu ammonis, Gyrus dentatus) | KI-Gravur + SVG |
+| V | Papez-Kreis direkt auf der Anatomie, 6 anklickbare Stationen | SVG mit animierter Schleife |
+| VI | H.M.s Gedächtnis als verblassende Bildwand | KI-Gravur |
+| VII | Taxonomie des Langzeitgedächtnisses (deklarativ/implizit) | SVG |
+| VIII | „Stock oder Schlange?" — der Bedrohungsscanner | KI-Gravur |
+| IX | Die Alarmanlage des Körpers (Sympathikus, Nebennieren) | KI-Gravur + nummerierte Overlays |
+| X | Orientierung im Gehirnschnitt: Landmarke Seitenventrikel | SVG |
+| XI | Die große Tafel: alle drei Verschaltungen in einem Bild | SVG |
+
+Dazu: Merkspruch **„Hipster fordern Mamas antiken Doppel-Gyros"** mit illustriertem
+Bestellbild und Sortierspiel, Patientenakte zu H.M., zehn Testat-Fragen mit Erklärungen.
+
+Kein Framework, kein Build-Schritt — reines HTML/CSS/JS. Die anatomischen Schemata sind
+eigene SVGs (Beschriftung von Hand gesetzt), die atmosphärischen Gravuren wurden mit
+Higgsfield (Seedream 4.5, Nano Banana, FLUX.2) generiert und kuratiert.
 
 ## Lokal starten
-
-Beliebiger statischer Server, z. B.:
 
 ```bash
 python -m http.server 4173
@@ -28,17 +40,12 @@ Dann <http://localhost:4173> öffnen.
 
 ## Quelle & Credits
 
-Der Inhalt basiert auf dem Video
+Inhalt nach dem Video
 [„Das Limbische System: Aufbau und Funktion verstehen"](https://www.youtube.com/watch?v=vIXBW-a9BWY)
-vom Kanal **Neurologie mit Dr. Janis**. Der Merkspruch stammt aus dem Video
-(angelehnt an einen DocCheck-Klassiker).
+von **Neurologie mit Dr. Janis** (dort stammt auch der Merkspruch, angelehnt an einen
+DocCheck-Klassiker). Weiterführend: Trepel, *Neuroanatomie* (8. Aufl., 2021) ·
+[dasGehirn.info](https://www.dasgehirn.info/grundlagen/anatomie/das-limbische-system) ·
+Corkin (2002), *Nature Reviews Neuroscience*.
 
-Weiterführende Quellen (wie im Video angegeben):
-
-- Trepel, M.: *Neuroanatomie — Struktur und Funktion*, 8. Auflage, 2021
-- [dasGehirn.info — Das limbische System](https://www.dasgehirn.info/grundlagen/anatomie/das-limbische-system)
-- Corkin, S.: *What's new with the amnesic patient H.M.?* Nature Reviews Neuroscience, 2002
-
-## Hinweis
-
-Diese Seite ist ein Lernprojekt und keine medizinische Beratung.
+Die Schautafeln sind didaktische Schemata — Proportionen zugunsten der Lesbarkeit
+vereinfacht. Kein Ersatz für medizinische Beratung.
