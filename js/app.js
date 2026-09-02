@@ -456,10 +456,17 @@
     });
   }
 
+  /* Direktweg zu YouTube (neuer Tab, angemeldeter Erstanbieter-Kontext):
+     Embeds zeigen je nach Browser/IP eine nicht aufloesbare «kein Bot»-
+     Anmeldewand — der Direktweg kann das nie. Nur der Poster-Klick
+     versucht weiterhin das Inline-Embed. */
+  function aufYoutube(t) {
+    window.open("https://www.youtube.com/watch?v=" + VIDEO_ID + "&t=" + (t || 0) + "s", "_blank", "noopener");
+  }
   var poster = document.querySelector(".kino-poster");
   if (poster) poster.addEventListener("click", function () { kinoPlay(Number(poster.dataset.t) || 61); });
   document.querySelectorAll(".kino-ch").forEach(function (b) {
-    b.addEventListener("click", function () { kinoPlay(Number(b.dataset.t)); });
+    b.addEventListener("click", function () { aufYoutube(Number(b.dataset.t)); });
   });
   /* Notausgang, falls das Embed blockiert wird */
   var ersteMarke = document.querySelector(".kino-ch");
@@ -474,11 +481,7 @@
     ersteMarke.parentNode.appendChild(raus);
   }
   document.querySelectorAll(".kino-link").forEach(function (b) {
-    b.addEventListener("click", function () {
-      if (!kino) return;
-      kinoPlay(Number(b.dataset.t));
-      kino.scrollIntoView({ behavior: "smooth", block: "center" });
-    });
+    b.addEventListener("click", function () { aufYoutube(Number(b.dataset.t)); });
   });
 
   /* ============ Scroll-Reveal ============ */
