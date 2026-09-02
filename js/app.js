@@ -443,7 +443,9 @@
   function kinoPlay(t) {
     if (!kinoStage) return;
     var iframe = document.createElement("iframe");
-    iframe.src = "https://www.youtube-nocookie.com/embed/" + VIDEO_ID + "?start=" + t + "&autoplay=1&rel=0";
+    /* www.youtube.com statt youtube-nocookie: die nocookie-Domain zeigt vielen
+       Nutzern eine «kein Bot»-Anmeldewand, die sich im Frame nie aufloesen laesst. */
+    iframe.src = "https://www.youtube.com/embed/" + VIDEO_ID + "?start=" + t + "&autoplay=1&rel=0";
     iframe.title = "Video: Das limbische System — Neurologie mit Dr. Janis";
     iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture");
     iframe.setAttribute("allowfullscreen", "");
@@ -459,6 +461,18 @@
   document.querySelectorAll(".kino-ch").forEach(function (b) {
     b.addEventListener("click", function () { kinoPlay(Number(b.dataset.t)); });
   });
+  /* Notausgang, falls das Embed blockiert wird */
+  var ersteMarke = document.querySelector(".kino-ch");
+  if (ersteMarke && ersteMarke.parentNode) {
+    var raus = document.createElement("a");
+    raus.className = "kino-ch";
+    raus.href = "https://www.youtube.com/watch?v=" + VIDEO_ID;
+    raus.target = "_blank";
+    raus.rel = "noopener";
+    raus.style.textDecoration = "none";
+    raus.textContent = "Auf YouTube öffnen ↗";
+    ersteMarke.parentNode.appendChild(raus);
+  }
   document.querySelectorAll(".kino-link").forEach(function (b) {
     b.addEventListener("click", function () {
       if (!kino) return;
